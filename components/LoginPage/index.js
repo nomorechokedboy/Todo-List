@@ -9,8 +9,8 @@ import logo from "../../public/logo.png"
 export default function index() {
 	return (
 		<div className={styles.container}>
-            <Image className={styles.logo} src={logo} alt="StikiNote logo" />
-			<span className={styles.pageName}>StikiNote</span>
+            {/* <Image className={styles.logo} src={logo} alt="StikiNote logo" />
+			<span className={styles.pageName}>StikiNote</span> */}
 			<div className="img">
 				<Image
 					className={styles.image}

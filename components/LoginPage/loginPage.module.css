@@ -3,6 +3,7 @@
 }
 
 .signupSlogan {
+    position: absolute;
 	top: 87%;
 	left: 50%;
 	transform: translateX(-50%);
