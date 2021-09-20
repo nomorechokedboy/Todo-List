@@ -1,0 +1,21 @@
+.input {
+    width: 250px;
+    height: 20px;
+}
+
+.inputDiv {
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgb(167,167,167);
+}
+
+.inputDiv div {
+    display: flex;
+    margin: 5px 0;
+    padding: 2px 0;
+}
+
+.iElem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
