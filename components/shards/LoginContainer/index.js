@@ -3,16 +3,15 @@ import LoginInput from "../LoginInput"
 import LoginButton from "../LoginButton"
 import styles from "./loginContainer.module.css"
 
-export default function index() {
+export default function loginContainer() {
 	return (
-		<div className={styles.loginContainer}>
-			<form className={styles.loginForm}>
-				<LoginInput></LoginInput>
-				<LoginButton
-					className={styles.loginBtn}
-					value="Login"
-				></LoginButton>
-			</form>
-		</div>
+		<>
+			<div className={styles.loginContainer}>
+				<form className={styles.loginForm}>
+					<LoginInput />
+				</form>
+				<LoginButton btnClass={styles.loginBtn} value="Login" />
+			</div>
+		</>
 	)
 }

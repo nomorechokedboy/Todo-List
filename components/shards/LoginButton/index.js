@@ -1,11 +1,12 @@
 import React from "react"
+import styles from "./loginButton.module.css"
 
-export default function index(props) {
+export default function loginButton({value, btnClass, }) {
     return (
         <input
-            className={props.className}
+            className={`${styles.btn} ${btnClass}`}
             type="submit"
-            value={props.value}
+            value={value}
         />
     )
 }

@@ -1,6 +1,20 @@
-.loginContainer {
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left: 20%;
+.loginForm {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+.loginBtn {
+	/**position*/
+	top: 70%;
+
+	/**design*/
+	background-image: linear-gradient(
+		to right,
+		rgba(30, 144, 255, 1),
+		rgba(30, 144, 255, 0.4427),
+		rgba(30, 144, 255, 1)
+	);
 }

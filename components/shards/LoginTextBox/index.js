@@ -1,23 +1,18 @@
 import React from "react"
 import styles from "./loginTextBox.module.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export default function index(props) {
+export default function loginTextBox({iconClass, inputName, placeholder, type}) {
 	return (
-		<div className={`${styles.inputDiv} ${props.className}`}>
-			<h5>{props.inputName}</h5>
+		<div className={styles.inputDiv}>
+			<span className={styles.inputName}>{inputName}</span>
 			<div>
-				<div className={styles.iElem}>
-					{/* <FontAwesomeIcon
-						className={styles.fontAweSome}
-						icon={props.iconName}
-						size={70}
-					/> */}
+				<div className={styles.iconDiv}>
+					<i className={iconClass}></i>
 				</div>
 				<input
 					className={styles.input}
-					placeholder={props.placeholder}
-					type="text"
+					placeholder={placeholder}
+					type={type}
 				/>
 			</div>
 		</div>

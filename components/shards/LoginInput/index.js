@@ -1,22 +1,21 @@
 import React from "react"
 import LoginTextBox from "../LoginTextBox"
-import styles from "./loginInput.module.css"
 
-export default function index() {
+export default function loginInput() {
 	return (
 		<>
 			<LoginTextBox
-				className={styles.user}
+				type="text"
 				placeholder="Input your username"
 				inputName="Username"
-				iconName="user-circle"
-			></LoginTextBox>
+				iconClass="fas fa-user-circle fa-lg"
+			/>
 			<LoginTextBox
-				className={styles.password}
+				type="password"
 				placeholder="Input your password"
 				inputName="Password"
-				iconName="lock"
-			></LoginTextBox>
+				iconClass="fas fa-lock fa-lg"
+			/>
 		</>
 	)
 }

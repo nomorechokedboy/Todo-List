@@ -1,0 +1,31 @@
+.signupBtn {
+	top: 90%;
+}
+
+.signupSlogan {
+	top: 87%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.logo {
+    position: absolute;
+	top: 10%;
+    left: 0;
+	width: 56px;
+    z-index: 2;
+}
+
+.pageName {
+    position: absolute;
+    top: 10%;
+	left: 12rem;
+	color: #333;
+	font-size: 50px;
+	font-weight: bold;
+	z-index: 2;
+}
+
+.image {
+	position: relative;
+}
