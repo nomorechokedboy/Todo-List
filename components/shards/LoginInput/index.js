@@ -6,15 +6,15 @@ export default function loginInput() {
 		<>
 			<LoginTextBox
 				type="text"
-				placeholder="Input your username"
+				placeholder="Enter your username"
 				inputName="Username"
-				iconClass="fas fa-user-circle fa-lg"
+				iconClass="fas fa-user-circle fa-2x"
 			/>
 			<LoginTextBox
 				type="password"
-				placeholder="Input your password"
+				placeholder="Enter your password"
 				inputName="Password"
-				iconClass="fas fa-lock fa-lg"
+				iconClass="fas fa-lock fa-2x"
 			/>
 		</>
 	)

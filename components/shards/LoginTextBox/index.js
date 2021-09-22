@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "./loginTextBox.module.css"
 
+
 export default function loginTextBox({iconClass, inputName, placeholder, type}) {
 	return (
 		<div className={styles.inputDiv}>

@@ -1,32 +1,33 @@
-.signupBtn {
-	top: 90%;
+.container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	overflow-y: hidden;
 }
 
-.signupSlogan {
-    position: absolute;
-	top: 87%;
-	left: 50%;
-	transform: translateX(-50%);
+.imageDiv {
+	height: 100vh;
 }
 
-.logo {
-    position: absolute;
-	top: 10%;
-    left: 0;
-	width: 56px;
-    z-index: 2;
+@media only screen and (max-width: 1023px) {
+    .container {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+
+		background-image: url(../../public/loginImage.jpg);
+		background-position: center;
+		background-size: cover;
+	}
+
+	.imageDiv {
+        display: none;
+	}
 }
 
-.pageName {
-    position: absolute;
-    top: 10%;
-	left: 12rem;
-	color: #333;
-	font-size: 50px;
-	font-weight: bold;
-	z-index: 2;
-}
-
-.image {
-	position: relative;
+@media only screen and (min-width: 1630px) {
+    .container {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
 }

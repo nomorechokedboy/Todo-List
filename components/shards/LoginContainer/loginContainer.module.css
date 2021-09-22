@@ -1,20 +1,55 @@
-.loginForm {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 3rem;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.logoDiv {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
 }
 
 .loginBtn {
-	/**position*/
-	top: 70%;
-
-	/**design*/
 	background-image: linear-gradient(
 		to right,
 		rgba(30, 144, 255, 1),
-		rgba(30, 144, 255, 0.4427),
+		rgba(30, 144, 255, 0.45),
 		rgba(30, 144, 255, 1)
 	);
+}
+
+.loginBtnDiv {
+    text-align: center;
+}
+
+.signupBtn {
+	background-image: linear-gradient(
+		to right,
+		rgba(255, 239, 213, 1),
+		rgb(255, 253, 224),
+		rgba(255, 239, 213, 1)
+	);
+
+    margin-top: 1rem;
+}
+
+.signupSlogan {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pageName {
+	color: rgb(0, 0, 0);
+	font-size: 55px;
+	font-weight: bold;
 }
