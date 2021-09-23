@@ -1,0 +1,12 @@
+.container {
+	background-image: url("/background.jpeg");
+	padding: 30px;
+}
+.demoImage {
+	width: 100%;
+}
+.descript {
+	margin-top: 10px;
+}
+@media only screen and (min-width: 1024px) {
+}
