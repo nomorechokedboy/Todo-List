@@ -11,14 +11,17 @@ const Demo = (props) => {
 				src="demo.png"
 				alt="App demo image"
 			/>
-			<Slogan />
-			<p className={styles.descript}>
-				Lorem hic assumenda quis voluptates molestias?
-				Magnam ipsa sit esse repellat aperiam, esse.
-				Delectus sint fugit eaque excepturi dolorem
-				Praesentium unde fuga natus nisi placeat porro
-				Reprehenderit officiis quia nesciunt.
-			</p>
+			<div className={styles.textWrapper}>
+				<Slogan />
+				<p className={styles.descript}>
+					Lorem hic assumenda quis voluptates
+					molestias? Magnam ipsa sit esse repellat
+					aperiam, esse. Delectus sint fugit eaque
+					excepturi dolorem Praesentium unde fuga
+					natus nisi placeat porro Reprehenderit
+					officiis quia nesciunt.
+				</p>
+			</div>
 		</section>
 	);
 };
