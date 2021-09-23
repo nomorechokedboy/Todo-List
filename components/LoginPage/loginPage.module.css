@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	overflow-y: hidden;
+}
+
+.imageWrapper {
+	width: 50%;
+	height: 100vh;
+}
+
+.img {
+	flex: 1;
+}
+
+@media only screen and (max-width: 1023px) {
+	.container {
+		background-image: url(../../public/loginImage.jpg);
+		background-position: center;
+		background-size: cover;
+	}
+
+	.imageWrapper {
+		display: none;
+	}
+}
