@@ -1,7 +1,6 @@
 .ggBtn {
 	/** display */
-	display: grid;
-	grid-template-columns: 0.5fr 2fr;
+	display: flex;
 	align-items: center;
 	margin-bottom: 10px;
 
@@ -25,7 +24,7 @@
 .btnText {
 	font-size: 18px;
 	font-weight: bold;
-	margin: 0 auto;
+	padding: 0 40px;
 }
 
 .icon {

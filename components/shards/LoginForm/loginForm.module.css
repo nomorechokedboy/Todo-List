@@ -1,4 +1,17 @@
-.btn {
+.loginBtn {
+	background-image: linear-gradient(
+		to right,
+		rgba(30, 144, 255, 1),
+		rgba(30, 144, 255, 0.45),
+		rgba(30, 144, 255, 1)
+	);
+}
+
+.loginBtnWrapper {
+    text-align: center;
+}
+
+.loginBtn {
 	/** size and font */
 	width: 250px;
 	height: 55px;
@@ -12,7 +25,7 @@
 	box-shadow: 0 4px 3.7px 0px rgba(0, 0, 0, 0.25);
 }
 
-.btn:active {
+.loginBtn:active {
 	box-shadow: 0 2px 3.7px 0px rgba(0, 0, 0, 0.25);
 	transform: translateY(2px);
 }

@@ -1,33 +1,25 @@
 .container {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	display: flex;
 	overflow-y: hidden;
 }
 
-.imageDiv {
+.imageWrapper {
+	width: 50%;
 	height: 100vh;
 }
 
-@media only screen and (max-width: 1023px) {
-    .container {
-		display: flex;
-		justify-content: center;
-		align-content: center;
+.img {
+	flex: 1;
+}
 
+@media only screen and (max-width: 1023px) {
+	.container {
 		background-image: url(../../public/loginImage.jpg);
 		background-position: center;
 		background-size: cover;
 	}
 
-	.imageDiv {
-        display: none;
-	}
-}
-
-@media only screen and (min-width: 1630px) {
-    .container {
-		display: flex;
-		justify-content: center;
-		align-content: center;
+	.imageWrapper {
+		display: none;
 	}
 }

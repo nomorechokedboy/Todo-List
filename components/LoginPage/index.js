@@ -7,8 +7,12 @@ import loginImage from "../../public/loginImage.jpg"
 export default function index() {
 	return (
 		<div className={styles.container}>
-			<div className={styles.imageDiv}>
-				<Image src={loginImage} alt="A peaceful view"/>
+			<div className={styles.imageWrapper}>
+				<Image
+					src={loginImage}
+					alt="A peaceful view"
+					className={styles.img}
+				/>
 			</div>
 			<LoginContainer />
 		</div>

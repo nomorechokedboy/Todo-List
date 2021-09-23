@@ -1,12 +1,16 @@
 import React from "react"
 import styles from "./loginTextBox.module.css"
 
+function inputNameAreEqual(prev, next) {
+	return prev.inputName === next.inputName
+}
 
-export default function loginTextBox({iconClass, inputName, placeholder, type}) {
+function LoginTextBox({ iconClass, inputName, placeholder, type }) {
+	console.log("cc")
 	return (
 		<div className={styles.inputDiv}>
 			<span className={styles.inputName}>{inputName}</span>
-			<div>
+			<div className={styles.textBox}>
 				<div className={styles.iconDiv}>
 					<i className={iconClass}></i>
 				</div>
@@ -14,8 +18,12 @@ export default function loginTextBox({iconClass, inputName, placeholder, type}) 
 					className={styles.input}
 					placeholder={placeholder}
 					type={type}
+					// onChange={handleChange}
+					// value={value}
 				/>
 			</div>
 		</div>
 	)
 }
+
+export default React.memo(LoginTextBox, inputNameAreEqual)

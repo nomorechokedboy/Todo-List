@@ -1,0 +1,38 @@
+.signupText {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.loginBtnWrapper {
+    text-align: center;
+}
+
+.signupBtn {
+	/** size and font */
+	width: 250px;
+	height: 55px;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 1rem;
+
+	/** design */
+	cursor: pointer;
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 0 4px 3.7px 0px rgba(0, 0, 0, 0.25);
+	background-image: linear-gradient(
+		to right,
+		rgba(255, 239, 213, 1),
+		rgb(255, 253, 224),
+		rgba(255, 239, 213, 1)
+	);
+}
+
+.signupBtn:active {
+	box-shadow: 0 2px 3.7px 0px rgba(0, 0, 0, 0.25);
+	transform: translateY(2px);
+}
