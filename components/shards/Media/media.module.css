@@ -33,7 +33,7 @@
   .container {
     align-items: flex-start;
     flex-direction: column;
-    width: calc(100% / 3);
+    width: 20%;
     padding: 0;
   }
   .mobileRightWrapper {
