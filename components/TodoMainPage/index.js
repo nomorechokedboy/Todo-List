@@ -1,8 +1,11 @@
 import React from "react";
-import TestInput from "./shards/TestInput";
+import styles from "./todoMainPage.module.css";
+import MainHeader from "../shards/MainHeader";
 
-const TodoMainPage = (props) => {
-	return <TestInput />;
-};
-
-export default TodoMainPage;
+export default function TodoMainPage() {
+  return (
+    <div className={styles.container}>
+      <MainHeader />
+    </div>
+  );
+}
