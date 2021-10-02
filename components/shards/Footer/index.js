@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./footer.module.css";
 
+import Media from "../Media";
+
 const Footer = () => {
-	return (
-		<Footer className={styles.container}>
-			<h1>dd</h1>
-		</Footer>
-	);
+  return (
+    <footer className={styles.container}>
+      <Media />
+      {/* <SubNav />
+ <Contact /> */}
+    </footer>
+  );
 };
 
 export default Footer;

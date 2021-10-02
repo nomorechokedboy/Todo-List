@@ -7,15 +7,15 @@ import Demo from "../shards/Demo";
 import Emphasize from '../shards/Emphasize'
 import Footer from '../shards/Footer'
 
-export default function index() {
-	return (
-		<>
-			<Header />
-			<GetStarted />
-			<Features />
-			<Demo />
-			<Emphasize />
-			<Footer />
-		</>
-	);
+export default function HomePage() {
+    return (
+        <>
+            <Header />
+            <GetStarted />
+            <Features />
+            <Demo />
+            <Emphasize />
+            <Footer />
+        </>
+    );
 }

@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 0 30px;
+  align-items: center;
+}
+.logo {
+  margin-bottom: 20px;
+  width: 56px;
+  height: 56px;
+}
+.mobileRightWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+.descript {
+  font-size: 16;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+.mediaIcons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.icon {
+  margin-right: 20px;
+}
+@media only screen and (min-width: 1024px) {
+  .container {
+    align-items: flex-start;
+    flex-direction: column;
+    width: calc(100% / 3);
+    padding: 0;
+  }
+  .mobileRightWrapper {
+    margin-left: 0;
+  }
+  .descript {
+    width: 200px;
+  }
+  .mediaIcons {
+    justify-content: flex-start;
+  }
+}
