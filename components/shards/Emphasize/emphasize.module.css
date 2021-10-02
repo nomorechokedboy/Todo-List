@@ -1,0 +1,23 @@
+.container {
+	background-color: #fcf4e1;
+	/* padding: 0 30px 30px; */
+	padding-bottom: 30px;
+}
+.emphasizeImage {
+	width: 100%;
+}
+@media only screen and (min-width: 1024px) {
+	.container {
+		display: flex;
+		flex-direction: row-reverse;
+		padding: 0 20%;
+	}
+	.leftWrapper {
+		width: 50%;
+		flex: 1;
+		padding-top: 50px;
+	}
+	.emphasizeImage {
+		width: 400px;
+	}
+}
