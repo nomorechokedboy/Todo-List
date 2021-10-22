@@ -14,7 +14,7 @@ export default function Contact() {
       <div className={styles.inputWrapper}>
         <input className={styles.input} />
         <button className={styles.contactButton}>
-          <i class="fas fa-paper-plane"></i>
+          <i className="fas fa-paper-plane"></i>
         </button>
       </div>
     </section>

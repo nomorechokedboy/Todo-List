@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./footer.module.css";
-
 import Media from "../Media";
 import SubNav from "../SubNav";
 import Contact from "../Contact";
+import styles from "./footer.module.css";
 
 const Footer = () => {
   return (
