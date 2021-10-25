@@ -1,0 +1,28 @@
+.container {
+  align-items: center;
+  border-bottom: 1px solid;
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+.taskWrapper {
+  align-items: center;
+  display: flex;
+}
+.checkbox {
+  border-radius: 50%;
+  border: 1px solid;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+.todoTitle {
+}
+.rightside {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .rightside {
+    display: block;
+  }
+}

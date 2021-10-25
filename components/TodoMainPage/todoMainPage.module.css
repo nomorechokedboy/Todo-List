@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+}
+
+.sidebar {
+  display: none;
+}
+
+.pageContent {
+  flex: 1;
+}
+
+@media only screen and (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    width: 20%;
+    border-bottom: 1px solid;
+    padding: 30px;
+    max-height: 250px;
+  }
+
+  .pageContent {
+    width: 80%;
+    border-left: 1px solid;
+  }
+}
