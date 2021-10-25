@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  overflow-y: hidden;
 }
 
 .imageContainer {
@@ -11,9 +10,9 @@
 
 .logoWrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 .pageName {
@@ -27,7 +26,6 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-evenly;
   height: 100vh;
 }
 

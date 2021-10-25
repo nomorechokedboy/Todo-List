@@ -1,4 +1,6 @@
 import React from "react";
+import LoginPage from "../../LoginPage";
+import Link from "next/link";
 import styles from "./header.module.css";
 // import logo from "../../../public/logo.png"
 
@@ -19,8 +21,16 @@ export default function Header() {
           <span>Features</span>
           <i className="fas fa-chevron-down"></i>
         </div>
-        <div className={styles.navItem}>About us</div>
-        <div className={styles.navItem}>Sign In</div>
+        <div className={styles.navItem}>
+          <Link href="/#about">
+            <a>About us</a>
+          </Link>
+        </div>
+        <div className={styles.navItem}>
+          <Link href="/login">
+            <a>Sign In</a>
+          </Link>
+        </div>
         <div className={styles.navItem}>Sign Up</div>
       </nav>
     </header>

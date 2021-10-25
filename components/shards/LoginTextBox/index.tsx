@@ -8,9 +8,23 @@ function inputNameAreEqual(
   return prev.inputName === next.inputName;
 }
 
-const LoginTextBox = ({ iconClass, inputName, placeholder, type }) => {
+type Props = {
+  type: string;
+  placeholder: string;
+  iconClass: string;
+  inputName: string;
+  className: string;
+};
+
+const LoginTextBox = ({
+  type,
+  iconClass,
+  inputName,
+  placeholder,
+  className,
+}: Props) => {
   return (
-    <div className={styles.inputContainer}>
+    <div className={className}>
       <span className={styles.inputName}>{inputName}</span>
       <div className={styles.textBox}>
         <i className={iconClass}></i>
