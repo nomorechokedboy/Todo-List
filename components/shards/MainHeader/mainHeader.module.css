@@ -60,14 +60,6 @@
     padding: 10px;
   }
   .right {
-    display: flex;
-    width: 15%;
-    justify-content: flex-end;
-  }
-  .iconWrapper {
-    display: flex;
-  }
-  .icon {
-    margin-left: 40px;
+    display: block;
   }
 }

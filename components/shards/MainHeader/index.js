@@ -1,34 +1,7 @@
 import React from "react";
 import styles from "./mainHeader.module.css";
-
-const iconData = [
-  {
-    iconName: "plus",
-    handleClick: () => {
-      console.log("I am plus");
-    },
-  },
-  {
-    iconName: "bell",
-    handleClick: () => {
-      console.log("I am bell");
-    },
-  },
-  {
-    iconName: "cog",
-    handleClick: () => {
-      console.log("I am cog");
-    },
-  },
-];
-
-const Icon = ({ iconName, handleClick }) => {
-  return (
-    <div className={styles.icon} onClick={handleClick}>
-      <i className={`fas fa-${iconName}`}></i>
-    </div>
-  );
-};
+import IconWrapper from "../IconWrapper";
+import Icon from "../Icon";
 
 export default function MainHeader() {
   return (
@@ -48,13 +21,19 @@ export default function MainHeader() {
         <input className={styles.searchBar} placeholder="Type to search..." />
         <i className="fas fa-search"></i>
       </section>
-      <section className={styles.right}>
-        <div className={styles.iconWrapper}>
-          {iconData.map((el) => (
-            <Icon {...el} key={el.iconName} />
-          ))}
-        </div>
-      </section>
+      <div className={styles.right}>
+        <IconWrapper>
+          <Icon handleClick={() => console.log("I am plus")}>
+            <i className="fas fa-plus"></i>
+          </Icon>
+          <Icon handleClick={() => console.log("I am bell")}>
+            <i className="fas fa-bell"></i>
+          </Icon>
+          <Icon handleClick={() => console.log("I am cog")}>
+            <i className="fas fa-cog"></i>
+          </Icon>
+        </IconWrapper>
+      </div>
     </header>
   );
 }
