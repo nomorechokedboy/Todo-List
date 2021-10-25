@@ -23,15 +23,18 @@ export default function MainHeader() {
       </section>
       <div className={styles.right}>
         <IconWrapper>
-          <Icon handleClick={() => console.log("I am plus")}>
-            <i className="fas fa-plus"></i>
-          </Icon>
-          <Icon handleClick={() => console.log("I am bell")}>
-            <i className="fas fa-bell"></i>
-          </Icon>
-          <Icon handleClick={() => console.log("I am cog")}>
-            <i className="fas fa-cog"></i>
-          </Icon>
+          <Icon
+            iconName="plus"
+            handleClick={() => console.log("I am plus")}
+          ></Icon>
+          <Icon
+            iconName="bell"
+            handleClick={() => console.log("I am bell")}
+          ></Icon>
+          <Icon
+            iconName="cog"
+            handleClick={() => console.log("I am cog")}
+          ></Icon>
         </IconWrapper>
       </div>
     </header>

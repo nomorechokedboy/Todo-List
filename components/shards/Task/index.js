@@ -13,12 +13,14 @@ export default function Task() {
       <div className={styles.rightside}>
         <IconWrapper>
           <div>Work</div>
-          <Icon handleClick={() => console.log("Book open clicked")}>
-            <i class="fas fa-book-open"></i>
-          </Icon>
-          <Icon handleClick={() => console.log("Ellipsis-h clicked")}>
-            <i class="fas fa-ellipsis-h"></i>
-          </Icon>
+          <Icon
+            iconName="book-open"
+            handleClick={() => console.log("Book open clicked")}
+          ></Icon>
+          <Icon
+            iconName="ellipsis-h"
+            handleClick={() => console.log("Ellipsis-h clicked")}
+          ></Icon>
         </IconWrapper>
       </div>
     </div>
