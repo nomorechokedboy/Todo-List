@@ -1,16 +1,17 @@
 import React from "react";
 import LoginTextBox from "../LoginTextBox";
+import LoginButton from "../LoginButton";
 import styles from "./loginForm.module.css";
 
 export default function LoginForm({ isSignup }) {
   const icon = {
+    info: "fas fa-user-edit fa-2x",
     user: "fas fa-user-circle fa-2x",
     lock: "fas fa-lock fa-2x",
-    info: "fas fa-user-edit fa-2x",
   };
 
   return (
-    <form>
+    <form action="/todomain">
       {isSignup && (
         <>
           <LoginTextBox
@@ -54,6 +55,8 @@ export default function LoginForm({ isSignup }) {
           className={styles.inputContainer}
         />
       )}
+
+      {!isSignup && <LoginButton />}
     </form>
   );
 }

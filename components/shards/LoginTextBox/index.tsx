@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "./loginTextBox.module.css";
 
-function inputNameAreEqual(
-  prev: { inputName: string },
-  next: { inputName: string }
-) {
+function areEqual(prev: { inputName: string }, next: { inputName: string }) {
   return prev.inputName === next.inputName;
 }
 
@@ -28,10 +25,15 @@ const LoginTextBox = ({
       <span className={styles.inputName}>{inputName}</span>
       <div className={styles.textBox}>
         <i className={iconClass}></i>
-        <input className={styles.input} placeholder={placeholder} type={type} />
+        <input
+          className={styles.input}
+          placeholder={placeholder}
+          type={type}
+          required
+        />
       </div>
     </div>
   );
 };
 
-export default React.memo(LoginTextBox, inputNameAreEqual);
+export default React.memo(LoginTextBox, areEqual);
