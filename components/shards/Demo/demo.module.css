@@ -1,23 +1,28 @@
 .container {
-	background-image: url("/background.jpeg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	padding: 30px;
+  background-image: url("/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 30px;
 }
+
 .demoImage {
-	width: 100%;
+  width: 100%;
 }
+
 .textWrapper {
-	margin-top: 20px;
+  margin-top: 20px;
 }
+
 .descript {
-	margin-top: 10px;
+  margin-top: 10px;
 }
+
 @media only screen and (min-width: 1024px) {
-	.container {
-		padding: 50px 20%;
-	}
-	.textWrapper {
-		margin-top: 50px;
-	}
+  .container {
+    padding: 50px 20%;
+  }
+
+  .textWrapper {
+    margin-top: 50px;
+  }
 }

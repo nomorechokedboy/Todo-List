@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./media.module.css";
 
 const data = [
@@ -21,7 +22,7 @@ const data = [
 ];
 
 const MediaIcon = ({ data }) => (
-  <a href={data.href} target="_blank" className={styles.icon}>
+  <a href={data.href} target="_blank" rel="noreferrer" className={styles.icon}>
     <i className={`fab fa-${data.icon} fa-2x`}></i>
   </a>
 );
