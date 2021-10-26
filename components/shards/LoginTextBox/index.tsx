@@ -5,7 +5,7 @@ function areEqual(prev: { inputName: string }, next: { inputName: string }) {
   return prev.inputName === next.inputName;
 }
 
-interface IProps {
+interface ILoginTextBoxProps {
   type: string;
   placeholder: string;
   iconClass: string;
@@ -19,7 +19,7 @@ const LoginTextBox = ({
   inputName,
   placeholder,
   className,
-}: IProps) => {
+}: ILoginTextBoxProps) => {
   return (
     <div className={className}>
       <span className={styles.inputName}>{inputName}</span>
