@@ -5,13 +5,13 @@ function areEqual(prev: { inputName: string }, next: { inputName: string }) {
   return prev.inputName === next.inputName;
 }
 
-type Props = {
+interface IProps {
   type: string;
   placeholder: string;
   iconClass: string;
   inputName: string;
   className: string;
-};
+}
 
 const LoginTextBox = ({
   type,
@@ -19,7 +19,7 @@ const LoginTextBox = ({
   inputName,
   placeholder,
   className,
-}: Props) => {
+}: IProps) => {
   return (
     <div className={className}>
       <span className={styles.inputName}>{inputName}</span>
