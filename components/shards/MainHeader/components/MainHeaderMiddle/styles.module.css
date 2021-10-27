@@ -1,18 +1,7 @@
-.container {
-  align-items: center;
-  background-color: #fcf4e1;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-}
-.right {
+.middle {
   display: none;
 }
 @media only screen and (min-width: 1024px) {
-  .container {
-    justify-content: initial;
-    padding: 0 20%;
-  }
   .middle {
     align-items: center;
     display: flex;
@@ -24,8 +13,5 @@
     flex: 1;
     margin-right: 20px;
     padding: 10px;
-  }
-  .right {
-    display: block;
   }
 }

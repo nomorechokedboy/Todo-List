@@ -6,7 +6,7 @@ interface IIconicButtonProps {
   buttonStyle: Object;
   iconName: string;
   iconStyle?: Object;
-  handleClick: () => void;
+  handleClick: React.MouseEventHandler;
 }
 export default function IconicButton({
   buttonName,

@@ -3,7 +3,7 @@ import Slogan from "../Slogan";
 import StartedButton from "../StartedButton";
 import styles from "./emphasize.module.css";
 
-const Emphasize = (props) => {
+const Emphasize = () => {
   return (
     <section className={styles.container}>
       <img

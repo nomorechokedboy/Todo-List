@@ -3,7 +3,11 @@ import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
 import styles from "./loginForm.module.css";
 
-export default function LoginForm({ isSignup }) {
+interface ILoginFormProps {
+  isSignup: boolean;
+}
+
+export default function LoginForm({ isSignup }: ILoginFormProps) {
   const icon = {
     info: "fas fa-user-edit fa-2x",
     user: "fas fa-user-circle fa-2x",
