@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from "../LoginForm";
 import GoogleButton from "../GoogleButton";
-import SignupButton from "../SignupButton";
 import styles from "./loginContainer.module.css";
 
 export default function LoginContainer() {
@@ -13,9 +12,24 @@ export default function LoginContainer() {
 
   return (
     <div className={styles.loginContainer}>
-      {!isSignup && <GoogleButton />}
       <LoginForm isSignup={isSignup} />
-      <SignupButton isSignup={isSignup} onClick={handleChange} />
+
+      {!isSignup && (
+        <div>
+          Doesn&apos;t have an account? &nbsp;
+          <span className={styles.link} onClick={handleChange}>
+            Click here
+          </span>
+        </div>
+      )}
+
+      {!isSignup && <GoogleButton />}
+
+      {isSignup && (
+        <a className={styles.link} onClick={handleChange}>
+          Back
+        </a>
+      )}
     </div>
   );
 }
