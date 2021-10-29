@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "./signupButton.module.css";
 
-export default function SignupContainer({ isSignup, onClick }) {
+interface ISignupButtonProps {
+  isSignup: boolean;
+  onClick: React.MouseEventHandler;
+}
+
+export default function SignupContainer({
+  isSignup,
+  onClick,
+}: ISignupButtonProps) {
   return (
     <div className={styles.signupText}>
       {!isSignup && (

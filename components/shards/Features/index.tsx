@@ -4,13 +4,13 @@ import styles from "./features.module.css";
 import FeaturesLeft from "../FeaturesLeft";
 import FeaturesRight from "../FeaturesRight";
 
-const Features = (props) => {
-	return (
-		<section className={styles.container}>
-			<FeaturesLeft />
-			<FeaturesRight />
-		</section>
-	);
+const Features = () => {
+  return (
+    <section className={styles.container}>
+      <FeaturesLeft />
+      <FeaturesRight />
+    </section>
+  );
 };
 
 export default Features;

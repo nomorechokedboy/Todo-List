@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./featuresRight.module.css";
 
-const FeaturesRight = (props) => {
+const FeaturesRight = () => {
   return (
     <div className={styles.container}>
       <img src="/features.jpg" alt="Banner Image" className={styles.banner} />
