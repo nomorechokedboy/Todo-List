@@ -1,0 +1,33 @@
+.left {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.headerLogo {
+  width: 56px;
+}
+.userName {
+  font-size: 30px;
+  font-weight: bold;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+@media only screen and (min-width: 1024px) {
+  .left {
+    justify-content: initial;
+    width: 25%;
+    flex: none;
+  }
+  .headerLogo {
+    margin-right: 20px;
+  }
+  .username {
+    flex: 1;
+  }
+  .menuButton {
+    display: none;
+  }
+}

@@ -2,7 +2,7 @@ import React from "react";
 import Slogan from "../Slogan";
 import styles from "./demo.module.css";
 
-const Demo = (props) => {
+const Demo = () => {
   return (
     <section className={styles.container}>
       <img className={styles.demoImage} src="/demo.png" alt="App demo image" />
