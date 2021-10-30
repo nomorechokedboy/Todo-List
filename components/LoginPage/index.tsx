@@ -5,7 +5,11 @@ import styles from "./loginPage.module.css";
 
 const ImageContainer = () => (
   <div className={styles.imageContainer}>
-    <Image src="/loginImage.jpg" alt="A peaceful view" layout="fill" />
+    <Image
+      src="https://cdn.discordapp.com/attachments/759048227935879226/903853382488449054/loginImage.jpg"
+      alt="A peaceful view"
+      layout="fill"
+    />
   </div>
 );
 

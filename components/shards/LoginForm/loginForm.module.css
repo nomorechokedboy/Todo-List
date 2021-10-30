@@ -14,12 +14,3 @@
     rgba(30, 144, 255, 1)
   );
 }
-
-.signupButton {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 239, 213, 1),
-    rgb(255, 253, 224),
-    rgba(255, 239, 213, 1)
-  );
-}

@@ -1,34 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "../LoginForm";
+import SignupForm from "../SignupForm";
 import GoogleButton from "../GoogleButton";
+import { Text } from "./components/Text";
+import { selectIsSignUp, setIsSignup } from "../../../redux/SignupState/action";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./loginContainer.module.css";
 
 export default function LoginContainer() {
-  const [isSignup, setIsSignup] = useState(false);
+  const isSignup = useSelector(selectIsSignUp);
+  const dispatch = useDispatch();
 
   const handleChange = () => {
-    setIsSignup(!isSignup);
+    dispatch(setIsSignup(!isSignup));
   };
 
   return (
     <div className={styles.loginContainer}>
-      <LoginForm isSignup={isSignup} />
-
-      {!isSignup && (
-        <div>
-          Doesn&apos;t have an account? &nbsp;
-          <span className={styles.link} onClick={handleChange}>
-            Click here
-          </span>
-        </div>
-      )}
-
-      {!isSignup && <GoogleButton />}
-
-      {isSignup && (
-        <a className={styles.link} onClick={handleChange}>
-          Back
-        </a>
+      {!isSignup ? (
+        <>
+          <LoginForm />
+          <Text
+            question="Doesn't have an account?"
+            clickText="Click here"
+            onClick={handleChange}
+          />
+          <GoogleButton />
+        </>
+      ) : (
+        <>
+          <SignupForm />
+          <Text
+            question="Already have an account?"
+            clickText="Come back"
+            onClick={handleChange}
+          />
+        </>
       )}
     </div>
   );
