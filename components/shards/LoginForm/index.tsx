@@ -1,76 +1,96 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
-import { useDispatch, useSelector } from "react-redux";
-import { setLoginUser, selectLoginResponse } from "../../../redux/login/action";
+import { setAuth } from "../../../redux/auth/action";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { loginStatus } from "../../../pages/api/getUser";
 import styles from "./loginForm.module.css";
 
+const icon = {
+  info: "fas fa-user-edit fa-2x",
+  user: "fas fa-user-circle fa-2x",
+  lock: "fas fa-lock fa-2x",
+};
+
 export default function LoginForm() {
-  const icon = {
-    info: "fas fa-user-edit fa-2x",
-    user: "fas fa-user-circle fa-2x",
-    lock: "fas fa-lock fa-2x",
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const [checked, setChecked] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleCheckboxOnChange = (event: React.FormEvent<HTMLInputElement>) => {
+    let checked = event.currentTarget.checked;
+
+    setChecked(checked);
   };
 
-  const dispatch = useDispatch();
-  const [notification, setNotification] = useState("");
-  const [success, setSuccess] = useState(false);
-  const login = useSelector(selectLoginResponse);
+  const handleOnChange = (event: React.FormEvent<HTMLInputElement>) => {
+    let data = event.currentTarget;
 
-  useEffect(() => {
-    if (login !== undefined) {
-      setNotification(login.message);
-      setSuccess(login.success);
+    user[data.name] = data.value;
 
-      if (login.success) {
-        // setCookie("token", login.token, 1);
-      }
-    }
-  }, [login]);
+    setUser(user);
+  };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const username = event.currentTarget.username.value;
-    const password = event.currentTarget.password.value;
+    let status = await loginStatus(user);
 
-    dispatch(
-      setLoginUser({
-        username,
-        password,
-      })
-    );
+    if (status.success) {
+      const token = status.token;
+
+      if (checked) {
+        dispatch(setAuth(token));
+        localStorage.setItem("token", token);
+      }
+
+      router.push("/todomain");
+    } else {
+      const error_message = Object.values(status.errors)[0][0];
+      setNotification(error_message);
+    }
   };
-
-  useEffect(() => {
-    setNotification("");
-    setSuccess(false);
-  }, []);
 
   return (
     <>
-      <div>{notification}</div>
-      <form onSubmit={onSubmit}>
+      <div className={styles.errorNoti}>{notification}</div>
+      <form onSubmit={handleSubmit}>
         <LoginTextBox
+          onChange={handleOnChange}
+          label="Email"
+          name="email"
+          id="email"
           type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
-          inputName="Username"
+          placeholder="Enter your email"
           iconClass={icon.user}
           className={styles.inputContainer}
         />
 
         <LoginTextBox
-          type="password"
-          id="password"
+          onChange={handleOnChange}
+          label="Password"
           name="password"
+          id="password"
+          type="password"
           placeholder="Enter your password"
-          inputName="Password"
           iconClass={icon.lock}
           className={styles.inputContainer}
         />
-
+        <div className={styles.checkboxContainer}>
+          <input
+            onChange={handleCheckboxOnChange}
+            type="checkbox"
+            className={styles.checkbox}
+          />
+          <span>Remember me</span>
+        </div>
         <LoginButton className={styles.loginButton} name="Login" />
       </form>
     </>

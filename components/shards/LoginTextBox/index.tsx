@@ -1,21 +1,22 @@
-import React from "react";
 import styles from "./loginTextBox.module.css";
 
 interface ILoginTextBoxProps {
   id: string;
   type: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder: string;
   iconClass: string;
-  inputName: string;
+  label: string;
   className: string;
   name: string;
 }
 
 export default function LoginTextBox({
   id,
+  onChange,
   type,
   iconClass,
-  inputName,
+  label,
   placeholder,
   className,
   name,
@@ -23,18 +24,18 @@ export default function LoginTextBox({
   return (
     <>
       <div className={className}>
-        <label htmlFor={id} className={styles.inputName}>
-          {inputName}
+        <label htmlFor={id} className={styles.label}>
+          {label}
         </label>
         <div className={styles.textBox}>
           <i className={iconClass}></i>
           <input
+            onChange={onChange}
             id={id}
             name={name}
             className={styles.input}
             placeholder={placeholder}
             type={type}
-            required
           />
         </div>
       </div>

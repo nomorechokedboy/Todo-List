@@ -3,7 +3,7 @@ import LoginForm from "../LoginForm";
 import SignupForm from "../SignupForm";
 import GoogleButton from "../GoogleButton";
 import { Text } from "./components/Text";
-import { selectIsSignUp, setIsSignup } from "../../../redux/SignupState/action";
+import { selectIsSignUp, setIsSignup } from "../../../redux/signupState/action";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./loginContainer.module.css";
 

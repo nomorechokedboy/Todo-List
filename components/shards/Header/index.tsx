@@ -1,10 +1,20 @@
 import React from "react";
-import LoginPage from "../../LoginPage";
 import Link from "next/link";
 import styles from "./header.module.css";
+import { useDispatch } from "react-redux";
+import { setIsSignup } from "../../../redux/signupState/action";
+import { useRouter } from "next/router";
 // import logo from "../../../public/logo.png"
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleSignupClick = () => {
+    dispatch(setIsSignup(true));
+    router.replace("/login", "/signup");
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
@@ -18,7 +28,11 @@ export default function Header() {
       </div>
       <nav className={styles.headerRight}>
         <div className={styles.navItem}>
-          <span>Features</span>
+          <span>
+            <Link href="#features">
+              <a>Features</a>
+            </Link>
+          </span>
           <i className="fas fa-chevron-down"></i>
         </div>
         <div className={styles.navItem}>
@@ -31,7 +45,9 @@ export default function Header() {
             <a>Sign In</a>
           </Link>
         </div>
-        <div className={styles.navItem}>Sign Up</div>
+        <div className={styles.navItem}>
+          <a onClick={handleSignupClick}>Sign Up</a>
+        </div>
       </nav>
     </header>
   );
