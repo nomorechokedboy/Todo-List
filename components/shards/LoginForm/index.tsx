@@ -1,6 +1,7 @@
-import { useState } from "react";
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
+import SuccessPopup from "../SuccessPopup";
+import { useState } from "react";
 import { setAuth } from "../../../redux/auth/action";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -13,10 +14,31 @@ const icon = {
   lock: "fas fa-lock fa-2x",
 };
 
+/**
+ * @param key The key in storage
+ * @param value The item need to store
+ * @param ttl The time expire in millisecond
+ */
+
+const setStorageWithExpiry = (key: string, value: string, ttl: number) => {
+  const now = new Date();
+  const item = {
+    value: value,
+    expiry: now.getTime() + ttl,
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+};
+
+interface UserInputElement extends HTMLInputElement {
+  password: HTMLInputElement;
+}
+
 export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const [success, setSuccess] = useState(false);
   const [checked, setChecked] = useState(false);
   const [notification, setNotification] = useState("");
   const [user, setUser] = useState({
@@ -48,18 +70,28 @@ export default function LoginForm() {
 
       if (checked) {
         dispatch(setAuth(token));
-        localStorage.setItem("token", token);
+
+        const ttl = 604_800_000; // 7 days
+        setStorageWithExpiry("token", token, ttl);
       }
 
-      router.push("/todomain");
+      setSuccess(true);
+      setTimeout(() => {
+        console.log("hello");
+        router.push("/todomain");
+      }, 1000);
     } else {
       const error_message = Object.values(status.errors)[0][0];
       setNotification(error_message);
+
+      const target = event.target as UserInputElement;
+      target.password.value = "";
     }
   };
 
   return (
     <>
+      {success && <SuccessPopup name="Login" />}
       <div className={styles.errorNoti}>{notification}</div>
       <form onSubmit={handleSubmit}>
         <LoginTextBox

@@ -18,10 +18,14 @@ interface User {
 export default function HomePage() {
   const router = useRouter();
   const token = useSelector(selectAuth);
-  const authUser: User = jwtDecode(token);
 
-  if (authUser._id) {
-    router.push("/todomain");
+  // check if token is not null
+  if (token) {
+    const authUser: User = jwtDecode(token);
+
+    if (authUser._id) {
+      router.push("/todomain");
+    }
   }
 
   return (

@@ -1,5 +1,6 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
+import SuccessPopup from "../SuccessPopup";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -13,6 +14,11 @@ const icon = {
   lock: "fas fa-lock fa-2x",
 };
 
+interface UserInputElement extends HTMLInputElement {
+  password: HTMLInputElement;
+  rePassword: HTMLInputElement;
+}
+
 export default function SignupForm() {
   const router = useRouter();
 
@@ -23,6 +29,7 @@ export default function SignupForm() {
   const dispatch = useDispatch();
 
   const [notification, setNotification] = useState("");
+  const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({
     fullname: "",
     email: "",
@@ -36,11 +43,18 @@ export default function SignupForm() {
     let status = await signupStatus(user);
 
     if (status.success) {
-      dispatch(setIsSignup(false));
-      router.push("/login");
+      setSuccess(true);
+      setTimeout(() => {
+        dispatch(setIsSignup(false));
+        router.push("/login");
+      }, 1000);
     } else {
       const error_message = Object.values(status.errors)[0][0];
       setNotification(error_message);
+
+      const target = event.target as UserInputElement;
+      target.password.value = "";
+      target.rePassword.value = "";
     }
   };
 
@@ -54,6 +68,7 @@ export default function SignupForm() {
 
   return (
     <>
+      {success && <SuccessPopup name="Signup" />}
       <div className={styles.errorNoti}>{notification}</div>
       <form onSubmit={handleSubmit}>
         <LoginTextBox

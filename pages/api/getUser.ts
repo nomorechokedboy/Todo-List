@@ -10,13 +10,11 @@ interface SignupUser extends User {
   rePassword: string;
 }
 
-async function getResult(user: User | SignupUser, path: string) {
+async function getResult(path: string, headers: HeadersInit, body: string) {
   let response = await fetch(`${USER_API}${path}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
+    headers,
+    body,
   });
 
   if (response.ok) {
@@ -29,9 +27,25 @@ async function getResult(user: User | SignupUser, path: string) {
 }
 
 export const signupStatus = async (user: SignupUser) => {
-  return getResult(user, "/signup");
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const body = JSON.stringify(user);
+  return getResult("/signup", headers, body);
 };
 
 export const loginStatus = async (user: User) => {
-  return getResult(user, "/login");
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const body = JSON.stringify(user);
+  return getResult("/login", headers, body);
+};
+
+export const googleLoginStatus = async (token: string) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const body = JSON.stringify({ token });
+  return getResult("/google/login", headers, body);
 };
