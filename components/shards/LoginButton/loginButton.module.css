@@ -14,12 +14,6 @@
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 0 4px 3.7px 0 rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(
-    to right,
-    rgba(30, 144, 255, 1),
-    rgba(30, 144, 255, 0.45),
-    rgba(30, 144, 255, 1)
-  );
 }
 
 .loginBtn:active {

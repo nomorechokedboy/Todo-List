@@ -1,0 +1,22 @@
+.inputContainer {
+  border-bottom: 2px solid;
+}
+
+.inputContainer:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.signupButton {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 239, 213, 1),
+    rgb(255, 253, 224),
+    rgba(255, 239, 213, 1)
+  );
+}
+
+.errorNoti {
+  color: #e56c75;
+  font-size: 20px;
+  font-weight: 500;
+}

@@ -1,39 +1,44 @@
-import React from "react";
 import styles from "./loginTextBox.module.css";
 
-function areEqual(prev: { inputName: string }, next: { inputName: string }) {
-  return prev.inputName === next.inputName;
-}
-
 interface ILoginTextBoxProps {
+  id: string;
   type: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder: string;
   iconClass: string;
-  inputName: string;
+  label: string;
   className: string;
+  name: string;
 }
 
-const LoginTextBox = ({
+export default function LoginTextBox({
+  id,
+  onChange,
   type,
   iconClass,
-  inputName,
+  label,
   placeholder,
   className,
-}: ILoginTextBoxProps) => {
+  name,
+}: ILoginTextBoxProps) {
   return (
-    <div className={className}>
-      <span className={styles.inputName}>{inputName}</span>
-      <div className={styles.textBox}>
-        <i className={iconClass}></i>
-        <input
-          className={styles.input}
-          placeholder={placeholder}
-          type={type}
-          required
-        />
+    <>
+      <div className={className}>
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
+        <div className={styles.textBox}>
+          <i className={iconClass}></i>
+          <input
+            onChange={onChange}
+            id={id}
+            name={name}
+            className={styles.input}
+            placeholder={placeholder}
+            type={type}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
-};
-
-export default React.memo(LoginTextBox, areEqual);
+}
