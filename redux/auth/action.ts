@@ -7,4 +7,4 @@ export const setAuth = (token: string) => {
   };
 };
 
-export const selectAuth = (state: any) => state.authReducer;
+export const selectAuth = (state: any) => state.auth;

@@ -6,8 +6,8 @@ import { isSignupReducer } from "./signupState/reducer";
 
 const rootReducer = combineReducers({
   todoSearch,
-  isSignupReducer,
-  authReducer,
+  isSignup: isSignupReducer,
+  auth: authReducer,
 });
 
 export const store = createStore(rootReducer);
