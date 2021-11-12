@@ -12,6 +12,7 @@ export default function LoginContainer() {
   const dispatch = useDispatch();
 
   const handleChange = () => {
+    console.log(isSignup);
     dispatch(setIsSignup(!isSignup));
   };
 

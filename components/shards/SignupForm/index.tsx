@@ -1,18 +1,12 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
 import SuccessPopup from "../SuccessPopup";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setIsSignup } from "../../../redux/signupState/action";
 import { signupStatus } from "../../../pages/api/getUser";
 import styles from "./styles.module.css";
-
-const icon = {
-  info: "fas fa-user-edit fa-2x",
-  user: "fas fa-user-circle fa-2x",
-  lock: "fas fa-lock fa-2x",
-};
 
 interface UserInputElement extends HTMLInputElement {
   password: HTMLInputElement;
@@ -21,11 +15,6 @@ interface UserInputElement extends HTMLInputElement {
 
 export default function SignupForm() {
   const router = useRouter();
-
-  if (router.asPath === "/login" || router.asPath === "/") {
-    router.replace("/login", "/signup");
-  }
-
   const dispatch = useDispatch();
 
   const [notification, setNotification] = useState("");
@@ -37,20 +26,34 @@ export default function SignupForm() {
     rePassword: "",
   });
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  if (router.asPath === "/login" || router.asPath === "/") {
+    router.replace("/login", "/signup");
+  }
+
+  const icon = useMemo(() => {
+    return {
+      info: "fas fa-user-edit fa-2x",
+      user: "fas fa-user-circle fa-2x",
+      lock: "fas fa-lock fa-2x",
+    };
+  }, []);
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
-    let status = await signupStatus(user);
+    const response = await signupStatus(user);
 
-    if (status.success) {
+    if (response.success) {
       setSuccess(true);
+
       setTimeout(() => {
         dispatch(setIsSignup(false));
         router.push("/login");
       }, 1000);
     } else {
-      const error_message = Object.values(status.errors)[0][0];
-      setNotification(error_message);
+      setNotification(response.error);
 
       const target = event.target as UserInputElement;
       target.password.value = "";
@@ -58,8 +61,8 @@ export default function SignupForm() {
     }
   };
 
-  const handleOnChange = (event: React.FormEvent<HTMLInputElement>) => {
-    let data = event.currentTarget;
+  const handleOnChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    const data = event.currentTarget;
 
     user[data.name] = data.value;
 

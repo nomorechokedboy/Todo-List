@@ -1,25 +1,19 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
 import SuccessPopup from "../SuccessPopup";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { setAuth } from "../../../redux/auth/action";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { loginStatus } from "../../../pages/api/getUser";
 import styles from "./loginForm.module.css";
 
-const icon = {
-  info: "fas fa-user-edit fa-2x",
-  user: "fas fa-user-circle fa-2x",
-  lock: "fas fa-lock fa-2x",
-};
-
 /**
+ * setStorageWithExpiry works like localStorage.setItem() but with expiry time
  * @param key The key in storage
  * @param value The item need to store
  * @param ttl The time expire in millisecond
  */
-
 const setStorageWithExpiry = (key: string, value: string, ttl: number) => {
   const now = new Date();
   const item = {
@@ -46,28 +40,41 @@ export default function LoginForm() {
     password: "",
   });
 
-  const handleCheckboxOnChange = (event: React.FormEvent<HTMLInputElement>) => {
-    let checked = event.currentTarget.checked;
+  const icon = useMemo(() => {
+    return {
+      info: "fas fa-user-edit fa-2x",
+      user: "fas fa-user-circle fa-2x",
+      lock: "fas fa-lock fa-2x",
+    };
+  }, []);
+
+  const handleCheckboxOnChange = (
+    event: React.FormEvent<HTMLInputElement>
+  ): void => {
+    const checked = event.currentTarget.checked;
 
     setChecked(checked);
   };
 
-  const handleOnChange = (event: React.FormEvent<HTMLInputElement>) => {
-    let data = event.currentTarget;
+  const handleOnChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    const data = event.currentTarget;
 
     user[data.name] = data.value;
 
     setUser(user);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
-    let status = await loginStatus(user);
+    const response = await loginStatus(user);
 
-    if (status.success) {
-      const token = status.token;
+    if (response.success) {
+      const token = response.token;
 
+      // remember me
       if (checked) {
         dispatch(setAuth(token));
 
@@ -76,13 +83,13 @@ export default function LoginForm() {
       }
 
       setSuccess(true);
+
       setTimeout(() => {
         console.log("hello");
         router.push("/todomain");
       }, 1000);
     } else {
-      const error_message = Object.values(status.errors)[0][0];
-      setNotification(error_message);
+      setNotification(response.error);
 
       const target = event.target as UserInputElement;
       target.password.value = "";
