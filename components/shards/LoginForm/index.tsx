@@ -32,6 +32,10 @@ export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  if (router.asPath === "/signup") {
+    router.replace("/login");
+  }
+
   const [success, setSuccess] = useState(false);
   const [checked, setChecked] = useState(false);
   const [notification, setNotification] = useState("");
@@ -85,7 +89,6 @@ export default function LoginForm() {
       setSuccess(true);
 
       setTimeout(() => {
-        console.log("hello");
         router.push("/todomain");
       }, 1000);
     } else {
