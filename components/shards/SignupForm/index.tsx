@@ -17,6 +17,10 @@ export default function SignupForm() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  if (router.asPath === "/login") {
+    router.replace("/login", "/signup");
+  }
+
   const [notification, setNotification] = useState("");
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({
@@ -25,10 +29,6 @@ export default function SignupForm() {
     password: "",
     rePassword: "",
   });
-
-  if (router.asPath === "/login" || router.asPath === "/") {
-    router.replace("/login", "/signup");
-  }
 
   const icon = useMemo(() => {
     return {
