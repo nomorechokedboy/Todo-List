@@ -43,31 +43,58 @@ export default function SignupForm() {
   ): Promise<void> => {
     event.preventDefault();
 
-    const response = await signupStatus(user);
+    setNotification("Waiting..."); // wait for validation
 
-    if (response.success) {
-      setSuccess(true);
+    const target = event.target as UserInputElement;
 
-      setTimeout(() => {
-        dispatch(setIsSignup(false));
-        router.push("/login");
-      }, 1000);
-    } else {
-      setNotification(response.error);
+    if (target.password.value !== target.rePassword.value) {
+      setNotification("Password confirmation does not match");
 
-      const target = event.target as UserInputElement;
       target.password.value = "";
       target.rePassword.value = "";
+    } else {
+      const [token, error] = await signupStatus(user);
+
+      if (token) {
+        setSuccess(true);
+
+        setTimeout(() => {
+          dispatch(setIsSignup(false));
+          router.replace("/login");
+        }, 1000);
+      } else {
+        setNotification(error);
+
+        target.password.value = "";
+        target.rePassword.value = "";
+      }
     }
   };
 
+  const handlePwdInvalid = (event: React.InvalidEvent<HTMLInputElement>) => {
+    event.currentTarget.setCustomValidity(
+      "Password length must be 8 and contain at least 1 number"
+    );
+  };
+
   const handleOnChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    event.currentTarget.setCustomValidity("");
+    setNotification("");
+
     const data = event.currentTarget;
-
     user[data.name] = data.value;
-
     setUser(user);
   };
+
+  const textboxValue = useMemo(() => {
+    return {
+      fullname: "fullname",
+      email: "email",
+      pwd: "password",
+      pwdConfirm: "rePassword",
+      pwdPattern: "^(?=.*[a-zA-z])(?=.*\\d)([^\\s]){8,}$",
+    };
+  }, []);
 
   return (
     <>
@@ -76,46 +103,44 @@ export default function SignupForm() {
       <form onSubmit={handleSubmit}>
         <LoginTextBox
           onChange={handleOnChange}
-          label="Full name"
+          label={textboxValue.fullname}
           type="text"
-          name="fullname"
-          id="fullname"
-          placeholder="Enter your name in app"
+          name={textboxValue.fullname}
+          id={textboxValue.fullname}
+          placeholder={`Enter your ${textboxValue.fullname}`}
           iconClass={icon.info}
-          className={styles.inputContainer}
         />
 
         <LoginTextBox
           onChange={handleOnChange}
-          label="Email"
-          type="text"
-          name="email"
-          id="email"
-          placeholder="Enter your email"
+          label={textboxValue.email}
+          type={textboxValue.email}
+          name={textboxValue.email}
+          id={textboxValue.email}
+          placeholder={`Enter your ${textboxValue.email}`}
           iconClass={icon.user}
-          className={styles.inputContainer}
         />
 
         <LoginTextBox
           onChange={handleOnChange}
-          label="Password"
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Enter your password"
+          label={textboxValue.pwd}
+          type={textboxValue.pwd}
+          name={textboxValue.pwd}
+          id={textboxValue.pwd}
+          placeholder={`Enter your ${textboxValue.pwd}`}
           iconClass={icon.lock}
-          className={styles.inputContainer}
+          onInvalid={handlePwdInvalid}
+          pattern={textboxValue.pwdPattern}
         />
 
         <LoginTextBox
           onChange={handleOnChange}
-          label="Re-password"
-          type="password"
-          id="re-password"
-          name="rePassword"
-          placeholder="Re-enter your password"
+          label={textboxValue.pwdConfirm}
+          type={textboxValue.pwd}
+          id={textboxValue.pwdConfirm}
+          name={textboxValue.pwdConfirm}
+          placeholder={`Re-enter your ${textboxValue.pwd}`}
           iconClass={icon.lock}
-          className={styles.inputContainer}
         />
 
         <LoginButton className={styles.signupButton} name="Signup" />
