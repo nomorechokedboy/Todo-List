@@ -18,13 +18,7 @@ interface APIOptions {
   data: Object;
 }
 
-interface APIResult {
-  success: boolean;
-  token?: string;
-  error?: string;
-}
-
-async function getResult({ path, data }: APIOptions): Promise<APIResult> {
+async function getResult({ path, data }: APIOptions): Promise<string[]> {
   try {
     const response: axios.AxiosResponse = await axios.default.post(
       `${USER_API}${path}`,
@@ -34,21 +28,21 @@ async function getResult({ path, data }: APIOptions): Promise<APIResult> {
     );
 
     const token = response.data;
-    return { success: true, token };
+    return [token, null];
   } catch (error) {
     const message: string = Object.values(error.response.data)[0][0];
-    return { success: false, error: message };
+    return [null, message];
   }
 }
 
-export async function signupStatus(user: SignupUser): Promise<APIResult> {
+export async function signupStatus(user: SignupUser): Promise<string[]> {
   return getResult({ path: "/signup", data: user });
 }
 
-export async function loginStatus(user: User): Promise<APIResult> {
+export async function loginStatus(user: User): Promise<string[]> {
   return getResult({ path: "/login", data: user });
 }
 
-export async function googleLoginStatus(token: string): Promise<APIResult> {
+export async function googleLoginStatus(token: string): Promise<string[]> {
   return getResult({ path: "/google/login", data: { token } });
 }
