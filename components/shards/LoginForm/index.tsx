@@ -73,11 +73,11 @@ export default function LoginForm() {
   ): Promise<void> => {
     event.preventDefault();
 
-    const response = await loginStatus(user);
+    setNotification("Waiting..."); // wait for validation
 
-    if (response.success) {
-      const token = response.token;
+    const [token, error] = await loginStatus(user);
 
+    if (token) {
       // remember me
       if (checked) {
         dispatch(setAuth(token));
@@ -92,12 +92,19 @@ export default function LoginForm() {
         router.push("/todomain");
       }, 1000);
     } else {
-      setNotification(response.error);
+      setNotification(error);
 
       const target = event.target as UserInputElement;
       target.password.value = "";
     }
   };
+
+  const textboxValue = useMemo(() => {
+    return {
+      email: "email",
+      pwd: "password",
+    };
+  }, []);
 
   return (
     <>
@@ -106,25 +113,24 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit}>
         <LoginTextBox
           onChange={handleOnChange}
-          label="Email"
-          name="email"
-          id="email"
-          type="text"
-          placeholder="Enter your email"
+          label={textboxValue.email}
+          name={textboxValue.email}
+          id={textboxValue.email}
+          type={textboxValue.email}
+          placeholder={`Enter your ${textboxValue.email}`}
           iconClass={icon.user}
-          className={styles.inputContainer}
         />
 
         <LoginTextBox
           onChange={handleOnChange}
-          label="Password"
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Enter your password"
+          label={textboxValue.pwd}
+          name={textboxValue.pwd}
+          id={textboxValue.pwd}
+          type={textboxValue.pwd}
+          placeholder={`Enter your ${textboxValue.pwd}`}
           iconClass={icon.lock}
-          className={styles.inputContainer}
         />
+
         <div className={styles.checkboxContainer}>
           <input
             onChange={handleCheckboxOnChange}
