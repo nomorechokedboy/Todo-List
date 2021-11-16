@@ -8,12 +8,11 @@ interface ILoginTextBoxProps {
   iconClass: string;
   label: string;
   name: string;
+  register: any;
   pwdShow?: boolean;
   pattern?: string;
-  title?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onInvalid?: React.FormEventHandler<HTMLInputElement>;
-  onInput?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.FormEventHandler<HTMLInputElement>;
 }
 
 export default function LoginTextBox({
@@ -21,6 +20,8 @@ export default function LoginTextBox({
   label,
   type,
   id,
+  name,
+  register,
   ...inputProps
 }: ILoginTextBoxProps) {
   const [pwd, setPwd] = useState({
@@ -54,6 +55,9 @@ export default function LoginTextBox({
         <div className={styles.textBox}>
           <i className={iconClass}></i>
           <input
+            {...register(name, {
+              required: "This field is required",
+            })}
             className={styles.input}
             type={isPwd ? pwd.type : type}
             {...inputProps}

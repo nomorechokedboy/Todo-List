@@ -6,16 +6,20 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setIsSignup } from "../../../redux/signupState/action";
 import { signupStatus } from "../../../pages/api/getUser";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./styles.module.css";
 
-interface UserInputElement extends HTMLInputElement {
-  password: HTMLInputElement;
-  rePassword: HTMLInputElement;
+interface FormInput {
+  fullname: string;
+  email: string;
+  password: string;
+  rePassword: string;
 }
 
 export default function SignupForm() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm<FormInput>();
 
   if (router.asPath === "/login") {
     router.replace("/login", "/signup");
@@ -23,12 +27,16 @@ export default function SignupForm() {
 
   const [notification, setNotification] = useState("");
   const [success, setSuccess] = useState(false);
-  const [user, setUser] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-    rePassword: "",
-  });
+
+  const textbox = useMemo(() => {
+    return {
+      fullname: "fullname",
+      email: "email",
+      pwd: "password",
+      pwdConfirm: "verify-password",
+      pwdPattern: "^(?=.*[a-zA-z])(?=.*\\d)([^\\s]){8,}$",
+    };
+  }, []);
 
   const icon = useMemo(() => {
     return {
@@ -38,36 +46,30 @@ export default function SignupForm() {
     };
   }, []);
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
+  const onSubmit: SubmitHandler<FormInput> = async (
+    data: FormInput,
+    event: React.BaseSyntheticEvent
   ): Promise<void> => {
-    event.preventDefault();
+    const target = event.target;
 
     setNotification("Waiting..."); // wait for validation
+    const [token, error] = await signupStatus({
+      ...data,
+      rePassword: data[textbox.pwdConfirm],
+    });
 
-    const target = event.target as UserInputElement;
+    if (token) {
+      setSuccess(true);
 
-    if (target.password.value !== target.rePassword.value) {
-      setNotification("Password confirmation does not match");
-
-      target.password.value = "";
-      target.rePassword.value = "";
+      setTimeout(() => {
+        dispatch(setIsSignup(false));
+        router.replace("/login");
+      }, 1000);
     } else {
-      const [token, error] = await signupStatus(user);
+      setNotification(error);
 
-      if (token) {
-        setSuccess(true);
-
-        setTimeout(() => {
-          dispatch(setIsSignup(false));
-          router.replace("/login");
-        }, 1000);
-      } else {
-        setNotification(error);
-
-        target.password.value = "";
-        target.rePassword.value = "";
-      }
+      target[textbox.pwd].value = "";
+      target[textbox.pwdConfirm].value = "";
     }
   };
 
@@ -77,69 +79,59 @@ export default function SignupForm() {
     );
   };
 
-  const handleOnChange = (event: React.FormEvent<HTMLInputElement>): void => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.currentTarget.setCustomValidity("");
     setNotification("");
-
-    const data = event.currentTarget;
-    user[data.name] = data.value;
-    setUser(user);
   };
-
-  const textboxValue = useMemo(() => {
-    return {
-      fullname: "fullname",
-      email: "email",
-      pwd: "password",
-      pwdConfirm: "rePassword",
-      pwdPattern: "^(?=.*[a-zA-z])(?=.*\\d)([^\\s]){8,}$",
-    };
-  }, []);
 
   return (
     <>
       {success && <SuccessPopup name="Signup" />}
       <div className={styles.errorNoti}>{notification}</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <LoginTextBox
-          onChange={handleOnChange}
-          label={textboxValue.fullname}
+          register={register}
+          label={textbox.fullname}
           type="text"
-          name={textboxValue.fullname}
-          id={textboxValue.fullname}
-          placeholder={`Enter your ${textboxValue.fullname}`}
+          name={textbox.fullname}
+          id={textbox.fullname}
+          placeholder={`Enter your ${textbox.fullname}`}
           iconClass={icon.info}
+          onChange={handleOnChange}
         />
 
         <LoginTextBox
+          register={register}
+          label={textbox.email}
+          type={textbox.email}
+          name={textbox.email}
+          id={textbox.email}
+          placeholder={`Enter your ${textbox.email}`}
           onChange={handleOnChange}
-          label={textboxValue.email}
-          type={textboxValue.email}
-          name={textboxValue.email}
-          id={textboxValue.email}
-          placeholder={`Enter your ${textboxValue.email}`}
           iconClass={icon.user}
         />
 
         <LoginTextBox
-          onChange={handleOnChange}
-          label={textboxValue.pwd}
-          type={textboxValue.pwd}
-          name={textboxValue.pwd}
-          id={textboxValue.pwd}
-          placeholder={`Enter your ${textboxValue.pwd}`}
+          register={register}
+          label={textbox.pwd}
+          type={textbox.pwd}
+          name={textbox.pwd}
+          id={textbox.pwd}
+          placeholder={`Enter your ${textbox.pwd}`}
           iconClass={icon.lock}
           onInvalid={handlePwdInvalid}
-          pattern={textboxValue.pwdPattern}
+          onChange={handleOnChange}
+          pattern={textbox.pwdPattern}
         />
 
         <LoginTextBox
+          register={register}
+          label={textbox.pwdConfirm}
+          type={textbox.pwd}
+          id={textbox.pwdConfirm}
+          name={textbox.pwdConfirm}
+          placeholder={`Re-enter your ${textbox.pwd}`}
           onChange={handleOnChange}
-          label={textboxValue.pwdConfirm}
-          type={textboxValue.pwd}
-          id={textboxValue.pwdConfirm}
-          name={textboxValue.pwdConfirm}
-          placeholder={`Re-enter your ${textboxValue.pwd}`}
           iconClass={icon.lock}
         />
 
