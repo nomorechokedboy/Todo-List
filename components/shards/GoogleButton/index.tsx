@@ -14,9 +14,9 @@ export default function GoogleButton() {
   const onSuccess = async (res: any): Promise<void> => {
     const token = res.getAuthResponse().id_token; // get Gulu Gulu token
 
-    const response = await googleLoginStatus(token);
+    const [success, _] = await googleLoginStatus(token);
 
-    if (response.success) {
+    if (success) {
       setSuccess(true);
 
       setTimeout(() => {

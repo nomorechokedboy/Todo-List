@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { loginStatus } from "../../../pages/api/getUser";
 import styles from "./loginForm.module.css";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 /**
  * setStorageWithExpiry works like localStorage.setItem() but with expiry time
@@ -24,21 +25,35 @@ const setStorageWithExpiry = (key: string, value: string, ttl: number) => {
   localStorage.setItem(key, JSON.stringify(item));
 };
 
-interface UserInputElement extends HTMLInputElement {
-  password: HTMLInputElement;
+// interface UserInputElement extends HTMLInputElement {
+//   password: HTMLInputElement;
+// }
+
+interface FormInput {
+  email: string;
+  password: string;
+  checked?: boolean;
 }
 
 export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm<FormInput>();
+
+  if (router.asPath === "/signup") {
+    router.replace("/login");
+  }
 
   const [success, setSuccess] = useState(false);
-  const [checked, setChecked] = useState(false);
   const [notification, setNotification] = useState("");
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+
+  const textbox = useMemo(() => {
+    return {
+      email: "email",
+      pwd: "password",
+      checked: "checked",
+    };
+  }, []);
 
   const icon = useMemo(() => {
     return {
@@ -48,34 +63,17 @@ export default function LoginForm() {
     };
   }, []);
 
-  const handleCheckboxOnChange = (
-    event: React.FormEvent<HTMLInputElement>
-  ): void => {
-    const checked = event.currentTarget.checked;
+  const onSubmit: SubmitHandler<FormInput> = async (
+    data: FormInput,
+    event: React.BaseSyntheticEvent
+  ) => {
+    setNotification("Waiting..."); // wait for validation
 
-    setChecked(checked);
-  };
+    const [token, error] = await loginStatus(data);
 
-  const handleOnChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    const data = event.currentTarget;
-
-    user[data.name] = data.value;
-
-    setUser(user);
-  };
-
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-
-    const response = await loginStatus(user);
-
-    if (response.success) {
-      const token = response.token;
-
+    if (token) {
       // remember me
-      if (checked) {
+      if (data[textbox.checked]) {
         dispatch(setAuth(token));
 
         const ttl = 604_800_000; // 7 days
@@ -85,46 +83,50 @@ export default function LoginForm() {
       setSuccess(true);
 
       setTimeout(() => {
-        console.log("hello");
         router.push("/todomain");
       }, 1000);
     } else {
-      setNotification(response.error);
+      setNotification(error);
 
-      const target = event.target as UserInputElement;
-      target.password.value = "";
+      const target = event.target;
+      target[textbox.pwd].value = "";
     }
+  };
+
+  const handleOnChange = (_event: React.ChangeEvent<HTMLInputElement>) => {
+    setNotification("");
   };
 
   return (
     <>
       {success && <SuccessPopup name="Login" />}
       <div className={styles.errorNoti}>{notification}</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <LoginTextBox
+          register={register}
+          label={textbox.email}
+          name={textbox.email}
+          id={textbox.email}
+          type={textbox.email}
+          placeholder={`Enter your ${textbox.email}`}
           onChange={handleOnChange}
-          label="Email"
-          name="email"
-          id="email"
-          type="text"
-          placeholder="Enter your email"
           iconClass={icon.user}
-          className={styles.inputContainer}
         />
 
         <LoginTextBox
+          register={register}
+          label={textbox.pwd}
+          name={textbox.pwd}
+          id={textbox.pwd}
+          type={textbox.pwd}
+          placeholder={`Enter your ${textbox.pwd}`}
           onChange={handleOnChange}
-          label="Password"
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Enter your password"
           iconClass={icon.lock}
-          className={styles.inputContainer}
         />
+
         <div className={styles.checkboxContainer}>
           <input
-            onChange={handleCheckboxOnChange}
+            {...register("checked")}
             type="checkbox"
             className={styles.checkbox}
           />
