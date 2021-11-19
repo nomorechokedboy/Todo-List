@@ -1,6 +1,5 @@
 import * as axios from "axios";
-
-const USER_API = "http://localhost:5001/api/v1/user";
+import { USER_API } from "../../config";
 
 interface User {
   email: string;
@@ -36,6 +35,7 @@ async function getResult({ path, data }: APIOptions): Promise<APIResult> {
     return { success: true, token };
   } catch (error) {
     const message: string = Object.values(error.response.data)[0][0];
+    console.error(error);
     return { success: false, error: message };
   }
 }

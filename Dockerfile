@@ -13,5 +13,5 @@ COPY . /usr/src/app
 # ENV NODE_ENV=production
 # ENV PORT=5000
 
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]
 # docker build -t stikinote-frontend:dev .

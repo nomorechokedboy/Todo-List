@@ -13,13 +13,10 @@ interface ILoginTextBoxProps {
 
 export default function LoginTextBox({
   id,
-  onChange,
-  type,
+  className,
   iconClass,
   label,
-  placeholder,
-  className,
-  name,
+  ...inputProps
 }: ILoginTextBoxProps) {
   return (
     <>
@@ -29,14 +26,7 @@ export default function LoginTextBox({
         </label>
         <div className={styles.textBox}>
           <i className={iconClass}></i>
-          <input
-            onChange={onChange}
-            id={id}
-            name={name}
-            className={styles.input}
-            placeholder={placeholder}
-            type={type}
-          />
+          <input id={id} className={styles.input} {...inputProps} />
         </div>
       </div>
     </>
