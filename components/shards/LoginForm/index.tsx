@@ -3,6 +3,7 @@ import LoginButton from "../LoginButton";
 import SuccessPopup from "../SuccessPopup";
 import { useMemo, useState } from "react";
 import { setAuth } from "../../../redux/auth/action";
+import { setLoginUser } from "../../../redux/loginUser/action";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { loginStatus } from "../../../pages/api/getUser";
@@ -80,6 +81,7 @@ export default function LoginForm() {
         setStorageWithExpiry("token", token, ttl);
       }
 
+      dispatch(setLoginUser(token));
       setSuccess(true);
 
       setTimeout(() => {

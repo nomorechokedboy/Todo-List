@@ -1,7 +1,6 @@
 import * as axios from "axios";
 
-const USER_API =
-  "https://app-stikinote-nomorechokedboy.cloud.okteto.net/api/v1/user";
+const USER_API = "http://localhost:5001/api/v1/user";
 
 interface User {
   email: string;
