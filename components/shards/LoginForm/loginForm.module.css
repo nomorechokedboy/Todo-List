@@ -1,11 +1,3 @@
-.inputContainer {
-  border-bottom: 2px solid;
-}
-
-.inputContainer:not(:last-child) {
-  margin-bottom: 3rem;
-}
-
 .loginButton {
   background-image: linear-gradient(
     to right,

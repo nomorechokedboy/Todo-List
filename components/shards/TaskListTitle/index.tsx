@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./taskListTitle.module.css";
-import IconWrapper from "../IconWrapper";
 import Icon from "../Icon";
+import IconWrapper from "../IconWrapper";
+import styles from "./taskListTitle.module.css";
 
 export default function TaskListTitle() {
   return (
@@ -11,11 +11,11 @@ export default function TaskListTitle() {
         <Icon
           iconName="chevron-down"
           handleClick={() => console.log("Chevron-down clicked")}
-        ></Icon>
+        />
         <Icon
           iconName="ellipsis-v"
           handleClick={() => console.log("Ellipsis-v clicked")}
-        ></Icon>
+        />
       </IconWrapper>
     </div>
   );

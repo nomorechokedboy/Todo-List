@@ -1,9 +1,9 @@
-import React from "react";
 import Link from "next/link";
-import styles from "./header.module.css";
+import { useRouter } from "next/router";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { setIsSignup } from "../../../redux/signupState/action";
-import { useRouter } from "next/router";
+import styles from "./header.module.css";
 // import logo from "../../../public/logo.png"
 
 export default function Header() {

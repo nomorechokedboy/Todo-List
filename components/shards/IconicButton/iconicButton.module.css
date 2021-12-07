@@ -1,9 +1,11 @@
 .container {
   align-items: center;
+  cursor: pointer;
   display: flex;
   margin-bottom: 20px;
 }
 .descript {
   font-size: 25px;
   margin-left: 20px;
+  user-select: none;
 }

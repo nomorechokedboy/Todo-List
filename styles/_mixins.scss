@@ -1,0 +1,34 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+@mixin position($position, $top, $right: $top, $bottom: $top, $left: $right) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+@mixin overlay {
+  @include position(fixed, 0, 0, 0, 0);
+}
+@mixin text-style($size, $weight) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+}
+@mixin desktop() {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

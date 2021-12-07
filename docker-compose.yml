@@ -4,8 +4,9 @@ services:
     image: stikinote-frontend:dev
     volumes:
       - ./:/usr/src/app
-      - /usr/src/node_modules/
-      - /usr/src/.next/
+      - /usr/src/app/node_modules/
+      - /usr/src/app/.next/
+      - .next/cache/images:/usr/src/app/.next/cache/images
     environment:
       # - NODE_ENV=${NODE_ENV}
       - PORT=${PORT}

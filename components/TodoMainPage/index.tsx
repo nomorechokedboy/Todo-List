@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./todoMainPage.module.css";
-import MainHeader from "../shards/MainHeader";
-import TaskList from "../shards/TaskList";
 import Categories from "../shards/Categories";
+import MainHeader from "../shards/MainHeader";
+import TaskForm from "../shards/TaskForm";
+import TaskList from "../shards/TaskList";
+import styles from "./todoMainPage.module.css";
 
 export default function TodoMainPage() {
   return (
@@ -14,7 +15,7 @@ export default function TodoMainPage() {
         </aside>
         <main className={styles.pageContent}>
           <TaskList />
-          <TaskList />
+          <TaskForm />
         </main>
       </div>
     </>

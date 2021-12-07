@@ -1,0 +1,11 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.error {
+  color: $oldRose;
+  font-weight: bold;
+  &::before {
+    content: "⚠ ";
+    display: inline;
+  }
+}

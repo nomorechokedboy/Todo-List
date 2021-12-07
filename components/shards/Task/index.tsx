@@ -3,12 +3,16 @@ import Icon from "../Icon";
 import IconWrapper from "../IconWrapper";
 import styles from "./task.module.css";
 
-export default function Task() {
+interface TaskProps {
+  title: string;
+}
+
+export default function Task({ title }: TaskProps) {
   return (
     <div className={styles.container}>
       <div className={styles.taskWrapper}>
         <div className={styles.checkbox}></div>
-        <span className={styles.todoTitle}>Hom nay phai quet nha</span>
+        <span className={styles.todoTitle}>{title}</span>
       </div>
       <div className={styles.rightside}>
         <IconWrapper>

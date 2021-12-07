@@ -1,0 +1,64 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.overlay {
+  @include overlay;
+  @include grid-center;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+.container {
+  @include flex-col;
+  @include position(absolute, 20%, 20px);
+  background-color: $white;
+  border-radius: 5px;
+  padding: 20px;
+  @include desktop {
+    @include position(absolute, 25%, 30%);
+  }
+  z-index: 1000;
+}
+.exitForm {
+  @include position(absolute, -15px, -15px, null, null);
+  border-radius: 50%;
+  background-color: $white;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+.formTitle {
+  text-align: center;
+  @include text-style(25px, bold);
+  margin-bottom: 20px;
+}
+.taskForm {
+  @include flex-col;
+  flex: 1;
+  padding: 20px;
+  justify-content: space-between;
+}
+.taskTitle {
+  padding: 10px;
+}
+.label {
+  @include text-style(20px, bold);
+}
+.taskContent {
+  height: 100px;
+  padding: 10px;
+}
+.label,
+.label + input,
+.taskContent {
+  margin-bottom: 10px;
+}
+.submitBtn {
+  @include flex-center;
+  border-radius: 5px;
+  border: 1px solid;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  @include desktop {
+    align-self: center;
+    width: 100px;
+  }
+}
