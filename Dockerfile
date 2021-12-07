@@ -14,4 +14,5 @@ COPY . /usr/src/app
 # ENV PORT=5000
 
 CMD ["npm", "run", "dev"]
+
 # docker build -t stikinote-frontend:dev .
