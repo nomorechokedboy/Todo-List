@@ -1,0 +1,101 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  @include flex-col;
+  border-bottom: 1px solid;
+}
+.title {
+  @include flexRow;
+  border-radius: 5px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+.active,
+.title:hover {
+  background-color: $nobel;
+}
+.taskWrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  padding-right: 20px;
+}
+.checkbox {
+  border-radius: 50%;
+  border: 1px solid;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  &:hover {
+    background: {
+      image: url("https://images-ext-2.discordapp.net/external/9kTXAjR0LW0cmUJf5LmZaFd9iAi1b6z079Xot6sLBG4/https/t4.ftcdn.net/jpg/01/38/68/39/360_F_138683961_ncOVcRh8Md9wLk3T4mSjffNxiUdi6T7k.jpg");
+      position: center;
+      size: 50px 50px;
+    }
+  }
+}
+.todoTitle {
+  @include text-style(20px, bolder);
+  cursor: pointer;
+}
+.rightside {
+  display: none;
+}
+.taskContent {
+  overflow: hidden;
+  transition: all 0.3s ease-out 0.1s;
+  .content {
+    border: 1px solid;
+    border-radius: 5px;
+    flex: 1;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  .taskDate {
+    @include flexRow;
+    justify-content: space-between;
+    span {
+      @include text-style(14px, 500);
+      color: $nobel;
+    }
+  }
+}
+.taskContentShow {
+  @include flex-col;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 20px;
+  transition: all 0.3s ease-out 0.1s;
+  margin: 20px 0;
+}
+.formBtnWrapper {
+  @include flexRow;
+  justify-content: flex-end;
+  margin-top: 20px;
+  div {
+    margin-left: 20px;
+  }
+}
+.updateTitle {
+  border-radius: 5px;
+  flex: 1;
+  padding: 10px;
+}
+.updateContent {
+  flex: 1;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.updateDateFinished {
+  width: 100%;
+  @include desktop {
+    width: 30%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .rightside {
+    @include flex-center;
+  }
+}

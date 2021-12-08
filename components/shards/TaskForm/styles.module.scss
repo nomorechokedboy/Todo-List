@@ -50,15 +50,3 @@
 .taskContent {
   margin-bottom: 10px;
 }
-.submitBtn {
-  @include flex-center;
-  border-radius: 5px;
-  border: 1px solid;
-  cursor: pointer;
-  user-select: none;
-  padding: 10px;
-  @include desktop {
-    align-self: center;
-    width: 100px;
-  }
-}

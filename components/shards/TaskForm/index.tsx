@@ -1,22 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { AddTask } from "../../../lib/api/task";
+import { selectIsUpdate } from "../../../redux/isUpdate/action";
+import { selectLoginUser } from "../../../redux/loginUser/action";
 import { selectShowForm, setShowForm } from "../../../redux/showForm/action";
-import { setTodos } from "../../../redux/todos/action";
+import { addTodos } from "../../../redux/todos/action";
+import FormButton from "../FormButton";
 import { ValidateError } from "../Validate";
-
 import styles from "./styles.module.scss";
 
 export interface TaskData {
+  _id?: string;
   title: string;
   content: string;
-  "date finished": string;
+  dateFinished: string;
+  createAt: string;
 }
 
 export default function TaskForm() {
   const dispatch = useDispatch();
   const showForm = useSelector(selectShowForm);
-  // const loginUser = useSelector(select)
+  const loginUser = useSelector(selectLoginUser);
 
   const {
     reset,
@@ -27,7 +32,15 @@ export default function TaskForm() {
   } = useForm();
 
   const onSubmit = handleSubmit((data: TaskData) => {
-    dispatch(setTodos(data));
+    if (AddTask(loginUser, data)) {
+      dispatch(
+        addTodos({
+          ...data,
+          _id: Date.parse(new Date().toString()) + "",
+        })
+      );
+    }
+
     dispatch(setShowForm(false));
   });
 
@@ -37,7 +50,7 @@ export default function TaskForm() {
 
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset({ title: "", content: "", "date finished": "" });
+      reset({ title: "", content: "", dateFinished: "" });
     }
   }, [formState, reset]);
 
@@ -94,18 +107,16 @@ export default function TaskForm() {
               <input
                 type="date"
                 placeholder="Date finished"
-                {...register("date finished", {
+                {...register("dateFinished", {
                   required: true,
                   minLength: 10,
                   maxLength: 11,
                 })}
               />
-              {errors?.["date finished"]?.type === "required" && (
+              {errors?.dateFinished?.type === "required" && (
                 <ValidateError message="This field is required" />
               )}
-              <div className={styles.submitBtn} onClick={onSubmit}>
-                Add
-              </div>
+              <FormButton label={"Add"} handleClick={onSubmit} />
             </form>
           </div>
         </div>
