@@ -8,7 +8,7 @@ const Emphasize = () => {
   return (
     <section className={styles.container}>
       <div className={styles.emphasizeImage}>
-        <Image src="/tea.jpeg" alt="Meditation picture" placeholder="blur" />
+        <img src="/tea.jpeg" alt="Meditation picture" placeholder="blur" />
       </div>
       <div className={styles.leftWrapper}>
         <Slogan />

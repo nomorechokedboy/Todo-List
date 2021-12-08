@@ -10,7 +10,7 @@ export default function GetStarted() {
       <Slogan />
       <StartedButton />
       <div className={styles.banner}>
-        <Image src="/banner.jpg" alt="Homepage banner" />
+        <img src="/banner.jpg" alt="Homepage banner" />
       </div>
     </section>
   );

@@ -6,9 +6,17 @@ import styles from "./demo.module.css";
 const Demo = () => {
   return (
     <section className={styles.container}>
-      <div className={styles.demoImage}>
-        <Image src="/demo.png" alt="App demo image" placeholder="blur" />
-      </div>
+      {/* <div > */}
+      <img
+        src="/demo.png"
+        alt="App demo image"
+        className={styles.demoImage}
+        // placeholder="blur"
+        //               blurDataURL="https://theme.hstatic.net/200000093231/1000565457/14/lazyload.jpg?v=963"
+        // width={100}
+        // height={}
+      />
+      {/* </div> */}
       <div className={styles.textWrapper}>
         <Slogan />
         <p className={styles.descript}>
