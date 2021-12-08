@@ -2,12 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AddTask } from "../../../lib/api/task";
-import { selectIsUpdate } from "../../../redux/isUpdate/action";
 import { selectLoginUser } from "../../../redux/loginUser/action";
 import { selectShowForm, setShowForm } from "../../../redux/showForm/action";
 import { addTodos } from "../../../redux/todos/action";
 import FormButton from "../FormButton";
-import { ValidateError } from "../Validate";
+import ValidateError from "../Validate";
 import styles from "./styles.module.scss";
 
 export interface TaskData {

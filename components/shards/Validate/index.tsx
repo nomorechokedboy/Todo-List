@@ -5,6 +5,9 @@ interface ValidateProps {
   message: string;
 }
 
-export const ValidateError = React.memo(({ message }: ValidateProps) => {
+function Validate({ message }: ValidateProps) {
   return <p className={styles.error}>{message}</p>;
-});
+}
+
+const ValidateError = React.memo(Validate);
+export default ValidateError;
