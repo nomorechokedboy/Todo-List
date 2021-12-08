@@ -32,7 +32,7 @@ export default function LoginContainer() {
           <SignupForm />
           <Text
             question="Already have an account?"
-            clickText="Come back"
+            clickText="Login"
             onClick={handleChange}
           />
         </>

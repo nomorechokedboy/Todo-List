@@ -6,7 +6,14 @@ export default function MainHeaderLeft() {
   return (
     <section className={styles.left}>
       <div className={styles.headerLogo}>
-        <Image src="/logo.png" alt="StikiNote logo" />
+        <Image
+          src="/logo.png"
+          alt="StikiNote logo"
+          width={56}
+          height={56}
+          placeholder="blur"
+          blurDataURL="https://theme.hstatic.net/200000093231/1000565457/14/lazyload.jpg?v=963"
+        />
       </div>
       <div className={styles.userName}>Stikinote</div>
       <div className={styles.menuButton}>

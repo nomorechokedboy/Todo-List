@@ -2,12 +2,14 @@
   background-color: #1e90ff;
   border-radius: 3px;
   color: #fff;
+  cursor: pointer;
   text-align: center;
   width: 200px;
   padding: 10px;
   font-size: 20px;
   font-weight: bold;
   margin: 20px auto;
+  user-select: none;
 }
 .startedButton:hover {
   color: #000;

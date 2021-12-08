@@ -15,7 +15,7 @@ const ImageContainer = () => (
 
 const LogoContainer = () => (
   <div className={styles.logoWrapper}>
-    <Image src="/newLogo.png" alt="StikiNote logo" width={100} height={100} />
+    <Image src="/logo.png" alt="StikiNote logo" width={100} height={100} />
     <span className={styles.pageName}>StikiNote</span>
   </div>
 );
