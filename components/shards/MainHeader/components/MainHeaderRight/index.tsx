@@ -10,7 +10,7 @@ export default function MainHeaderRight() {
 
   const showForm = React.useCallback(() => {
     dispatch(setShowForm(true));
-  }, []);
+  }, [dispatch]);
 
   return (
     <section className={styles.right}>

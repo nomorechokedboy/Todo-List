@@ -17,7 +17,7 @@ export default function TaskList() {
 
   const showForm = React.useCallback(() => {
     dispatch(setShowForm(true));
-  }, []);
+  }, [dispatch]);
   const buttonColor = React.useMemo(() => ({ color: "#666" }), []);
   const iconColor = React.useMemo(() => ({ color: "red" }), []);
 
@@ -40,7 +40,7 @@ export default function TaskList() {
         dispatch(setTodos(tasks));
       })
       .catch((e) => console.error(e));
-  }, []);
+  }, [loginUser, dispatch, showForm]);
 
   return (
     <div className={styles.container}>

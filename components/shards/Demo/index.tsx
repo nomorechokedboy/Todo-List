@@ -1,11 +1,14 @@
 import React from "react";
+import Image from "next/image";
 import Slogan from "../Slogan";
 import styles from "./demo.module.css";
 
 const Demo = () => {
   return (
     <section className={styles.container}>
-      <img className={styles.demoImage} src="/demo.png" alt="App demo image" />
+      <div className={styles.demoImage}>
+        <Image src="/demo.png" alt="App demo image" placeholder="blur" />
+      </div>
       <div className={styles.textWrapper}>
         <Slogan />
         <p className={styles.descript}>

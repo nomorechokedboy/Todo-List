@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Slogan from "../Slogan";
 import StartedButton from "../StartedButton";
@@ -8,7 +9,9 @@ export default function GetStarted() {
     <section className={styles.container}>
       <Slogan />
       <StartedButton />
-      <img className={styles.banner} src="/banner.jpg" alt="Homepage banner" />
+      <div className={styles.banner}>
+        <Image src="/banner.jpg" alt="Homepage banner" />
+      </div>
     </section>
   );
 }

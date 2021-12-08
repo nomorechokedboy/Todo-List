@@ -6,10 +6,12 @@ interface FormButtonProps {
   handleClick: React.MouseEventHandler;
 }
 
-export default React.memo(({ label, handleClick }: FormButtonProps) => {
+function FormButton({ label, handleClick }: FormButtonProps) {
   return (
     <div className={styles.formBtn} onClick={handleClick}>
       {label}
     </div>
   );
-});
+}
+
+export default React.memo(FormButton);

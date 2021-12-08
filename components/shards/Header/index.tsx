@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -18,11 +19,9 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
-        <img
-          className={styles.headerLogo}
-          src="/logo.png"
-          alt="StikiNote logo"
-        />
+        <a className={styles.headerLogo} href="/">
+          <Image src="/logo.png" alt="StikiNote logo" />
+        </a>
         <span className={styles.headerPageName}>StikiNote</span>
         <i className="fas fa-bars fa-2x"></i>
       </div>

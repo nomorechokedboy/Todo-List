@@ -30,7 +30,9 @@ const MediaIcon = ({ data }) => (
 export default function Media() {
   return (
     <section className={styles.container}>
-      <img className={styles.logo} src="/logo.png" alt="StikiNote logo" />
+      <div className={styles.logo}>
+        <Image src="/logo.png" alt="StikiNote logo" placeholder="blur" />
+      </div>
       <div className={styles.mobileRightWrapper}>
         <p className={styles.descript}>
           {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque

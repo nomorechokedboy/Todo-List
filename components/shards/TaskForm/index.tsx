@@ -45,7 +45,7 @@ export default function TaskForm() {
 
   const hideForm = React.useCallback(() => {
     dispatch(setShowForm(false));
-  }, []);
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
