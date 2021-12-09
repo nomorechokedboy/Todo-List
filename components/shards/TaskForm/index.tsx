@@ -30,14 +30,11 @@ export default function TaskForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data: TaskData) => {
-    if (AddTask(loginUser, data)) {
-      dispatch(
-        addTodos({
-          ...data,
-          _id: Date.parse(new Date().toString()) + "",
-        })
-      );
+  const onSubmit = handleSubmit(async (data: TaskData) => {
+    const task = await AddTask(loginUser, data).catch((e) => console.error(e));
+
+    if (task) {
+      dispatch(addTodos(task));
     }
 
     dispatch(setShowForm(false));

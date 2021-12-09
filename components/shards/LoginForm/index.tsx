@@ -69,7 +69,6 @@ export default function LoginForm() {
     event: React.BaseSyntheticEvent
   ) => {
     setNotification("Waiting..."); // wait for validation
-    console.log({ loginstatus: await loginStatus(data) });
 
     const [token, error] = await loginStatus(data);
 

@@ -33,7 +33,7 @@ export default function Task({ task }: TaskProps) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data: UpdateTask) => {
+  const onSubmit = handleSubmit(async (data: UpdateTask) => {
     const updateTask: TaskData = {
       title: data.updateTitle,
       content: data.updateContent,
@@ -42,9 +42,8 @@ export default function Task({ task }: TaskProps) {
       createAt: task.createAt,
     };
 
-    console.table({ loginUser, updateTask });
-
-    if (UpdateTask(loginUser, updateTask)) dispatch(updateTodos(updateTask));
+    const message = await UpdateTask(loginUser, updateTask);
+    if (message) dispatch(updateTodos(updateTask));
 
     setIsUpdate(false);
     setIsOpen(false);
@@ -83,9 +82,11 @@ export default function Task({ task }: TaskProps) {
     [isOpen]
   );
 
-  const deleteTask = () => {
-    if (DeleteTask(loginUser, task._id)) {
-      dispatch(deleteTodos(task));
+  const deleteTask = async () => {
+    const taskDeleted = await DeleteTask(loginUser, task._id);
+
+    if (taskDeleted) {
+      dispatch(deleteTodos(taskDeleted));
     }
   };
 

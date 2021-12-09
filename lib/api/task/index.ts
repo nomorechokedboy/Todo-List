@@ -12,11 +12,13 @@ interface Payload {
 export const GetAllTask = (token: string) =>
   axios.default.get(API + "/task", { headers: { Authorization: token } });
 
-export const AddTask = (token: string, data: TaskData) => {
-  if (!token) return false;
+export const AddTask = async (token: string, data: TaskData) => {
+  if (!token) return null;
   const decoded: Payload = jwtDecode(token);
 
-  axios.default.post(
+  const {
+    data: { task },
+  } = await axios.default.post(
     API + "/task",
     {
       ...data,
@@ -27,36 +29,37 @@ export const AddTask = (token: string, data: TaskData) => {
     }
   );
 
-  return true;
+  return task;
 };
 
-export const DeleteTask = (token: string, taskId: string) => {
-  if (!token) return false;
+export const DeleteTask = async (token: string, taskId: string) => {
+  if (!token) return null;
   const decoded: Payload = jwtDecode(token);
 
-  axios.default.delete(`${API}/task/${taskId}`, {
+  const {
+    data: { found },
+  } = await axios.default.delete(`${API}/task/${taskId}`, {
     data: { userId: decoded._id },
     headers: { Authorization: token },
   });
-  return true;
+
+  return found;
 };
 
-export const UpdateTask = (token: string, task: TaskData) => {
-  if (!token) return false;
+export const UpdateTask = async (token: string, task: TaskData) => {
+  if (!token) return null;
   const decoded: Payload = jwtDecode(token);
 
-  if (task._id) {
-    axios.default.put(
-      `${API}/task/${task._id}`,
-      {
-        userId: decoded._id,
-        ...task,
-      },
-      { headers: { Authorization: token } }
-    );
+  const {
+    data: { message },
+  } = await axios.default.put(
+    `${API}/task/${task._id}`,
+    {
+      userId: decoded._id,
+      ...task,
+    },
+    { headers: { Authorization: token } }
+  );
 
-    return true;
-  }
-
-  return false;
+  return message;
 };
