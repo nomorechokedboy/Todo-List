@@ -1,8 +1,0 @@
-.right {
-  display: none;
-}
-@media only screen and (min-width: 1024px) {
-  .right {
-    display: block;
-  }
-}

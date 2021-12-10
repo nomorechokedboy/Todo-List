@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./iconWrapper.module.css";
+import styles from "./iconWrapper.module.scss";
 
 interface IIconWrapperProps {
   children: React.ReactNode;

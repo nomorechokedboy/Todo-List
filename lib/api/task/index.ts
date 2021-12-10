@@ -10,7 +10,9 @@ interface Payload {
 }
 
 export const GetAllTask = (token: string) =>
-  axios.default.get(API + "/task", { headers: { Authorization: token } });
+  axios.default.get(`${API}/task`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
 export const AddTask = async (token: string, data: TaskData) => {
   if (!token) return null;
@@ -19,13 +21,13 @@ export const AddTask = async (token: string, data: TaskData) => {
   const {
     data: { task },
   } = await axios.default.post(
-    API + "/task",
+    `${API}/task`,
     {
       ...data,
       userId: decoded._id,
     },
     {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     }
   );
 
@@ -40,7 +42,7 @@ export const DeleteTask = async (token: string, taskId: string) => {
     data: { found },
   } = await axios.default.delete(`${API}/task/${taskId}`, {
     data: { userId: decoded._id },
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   return found;
@@ -58,7 +60,7 @@ export const UpdateTask = async (token: string, task: TaskData) => {
       userId: decoded._id,
       ...task,
     },
-    { headers: { Authorization: token } }
+    { headers: { Authorization: `Bearer ${token}` } }
   );
 
   return message;

@@ -5,9 +5,9 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setIsSignup } from "../../../redux/signupState/action";
-import { signupStatus } from "../../../pages/api/getUser";
+import { signupStatus } from "../../../lib/api/user";
 import { SubmitHandler, useForm } from "react-hook-form";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 interface FormInput {
   fullname: string;

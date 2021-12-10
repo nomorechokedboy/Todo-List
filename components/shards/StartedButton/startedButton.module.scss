@@ -1,0 +1,26 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.startedButton {
+  @include text-style(20px, bold);
+
+  background-color: $dodger-blue;
+  border-radius: 3px;
+  color: $white;
+  cursor: pointer;
+  text-align: center;
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  user-select: none;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+@include desktop {
+  .startedButton {
+    font-size: 30px;
+  }
+}

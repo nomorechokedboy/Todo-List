@@ -2,15 +2,16 @@ import Image from "next/image";
 import React from "react";
 import Slogan from "../Slogan";
 import StartedButton from "../StartedButton";
-import styles from "./getStarted.module.css";
+import banner_img from "../../../public/banner.jpg";
+import styles from "./getStarted.module.scss";
 
 export default function GetStarted() {
   return (
     <section className={styles.container}>
-      <Slogan />
+      <Slogan text="StikiNote, once you note, you will love!" />
       <StartedButton />
       <div className={styles.banner}>
-        <img src="/banner.jpg" alt="Homepage banner" />
+        <Image src={banner_img} alt="Homepage banner" />
       </div>
     </section>
   );

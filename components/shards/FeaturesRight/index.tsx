@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./featuresRight.module.css";
+import styles from "./featuresRight.module.scss";
 
 const FeaturesRight = () => {
   return (

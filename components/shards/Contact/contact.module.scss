@@ -1,0 +1,48 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  @include flex-col;
+
+  padding: 0 30px 30px;
+
+  @include desktop {
+    width: 30%;
+  }
+}
+
+.contactTitle {
+  font-weight: bold;
+}
+
+.contactButton {
+  border: none;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.descript {
+  margin: 20px 0;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+.inputWrapper {
+  @include flex-common($justify: space-between);
+
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px 0 #999;
+  padding: 5px 10px;
+}
+
+.input {
+  border: none;
+  flex: 1;
+
+  &:focus {
+    border: none;
+  }
+}

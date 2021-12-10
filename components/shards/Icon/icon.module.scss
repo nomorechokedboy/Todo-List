@@ -1,0 +1,12 @@
+@import "../../../styles/mixins";
+
+.icon {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+@include desktop {
+  .icon {
+    margin-left: 30px;
+  }
+}

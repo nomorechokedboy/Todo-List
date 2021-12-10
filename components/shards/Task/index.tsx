@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteTask, UpdateTask } from "../../../lib/api/task";
-import { selectLoginUser } from "../../../redux/loginUser/action";
+import { selectAuth } from "../../../redux/auth/action";
 import { deleteTodos, updateTodos } from "../../../redux/todos/action";
 import FormButton from "../FormButton";
 import Icon from "../Icon";
@@ -24,14 +24,8 @@ export default function Task({ task }: TaskProps) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isUpdate, setIsUpdate] = React.useState(false);
-  const loginUser = useSelector(selectLoginUser);
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState,
-    formState: { errors },
-  } = useForm();
+  const loginUser = useSelector(selectAuth);
+  const { reset, register, handleSubmit, formState } = useForm();
 
   const onSubmit = handleSubmit(async (data: UpdateTask) => {
     const updateTask: TaskData = {

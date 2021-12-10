@@ -1,23 +1,36 @@
 @mixin flex {
   display: flex;
 }
-@mixin flex-center {
-  @include flex();
-  align-items: center;
-  justify-content: center;
-}
-@mixin flex-col {
-  @include flex();
-  flex-direction: column;
-}
-@mixin flexRow {
+
+@mixin flex-common(
+  $justify: normal,
+  $align: normal,
+  $direction: row,
+  $wrap: nowrap
+) {
   @include flex;
-  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+  flex-flow: $direction $wrap;
 }
+
+@mixin flex-center {
+  @include flex-common(center, center);
+}
+
+@mixin flex-col {
+  @include flex-common($direction: column);
+}
+
+@mixin flex-row {
+  @include flex-common($direction: row);
+}
+
 @mixin grid-center {
   display: grid;
   place-items: center;
 }
+
 @mixin position($position, $top, $right: $top, $bottom: $top, $left: $right) {
   position: $position;
   top: $top;
@@ -25,15 +38,18 @@
   bottom: $bottom;
   left: $left;
 }
+
 @mixin overlay {
   @include position(fixed, 0, 0, 0, 0);
 }
+
 @mixin text-style($size, $weight) {
   font: {
     size: $size;
     weight: $weight;
   }
 }
+
 @mixin desktop() {
   @media (min-width: 1024px) {
     @content;

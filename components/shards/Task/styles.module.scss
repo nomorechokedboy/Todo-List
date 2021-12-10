@@ -6,7 +6,7 @@
   border-bottom: 1px solid;
 }
 .title {
-  @include flexRow;
+  @include flex-row;
   border-radius: 5px;
   justify-content: space-between;
   width: 100%;
@@ -54,7 +54,7 @@
     padding: 10px;
   }
   .taskDate {
-    @include flexRow;
+    @include flex-row;
     justify-content: space-between;
     span {
       @include text-style(14px, 500);
@@ -71,7 +71,7 @@
   margin: 20px 0;
 }
 .formBtnWrapper {
-  @include flexRow;
+  @include flex-row;
   justify-content: flex-end;
   margin-top: 20px;
   div {

@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setIsSignup } from "../../../redux/signupState/action";
-import styles from "./header.module.css";
-// import logo from "../../../public/logo.png"
+import styles from "./header.module.scss";
 
 export default function Header() {
   const dispatch = useDispatch();

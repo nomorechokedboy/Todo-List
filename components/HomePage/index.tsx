@@ -24,7 +24,7 @@ export default function HomePage() {
     const authUser: User = jwtDecode(token);
 
     if (authUser._id) {
-      router.push("/todomain");
+      router.replace("/todomain");
     }
   }
 

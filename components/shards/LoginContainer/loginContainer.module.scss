@@ -1,0 +1,11 @@
+@import "../../../../../styles/mixins";
+
+.loginContainer {
+  @include flex-common(
+    $direction: column,
+    $justify: space-evenly,
+    $align: center
+  );
+
+  flex: 1;
+}

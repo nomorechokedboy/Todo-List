@@ -1,0 +1,39 @@
+@import "../../../styles/mixins";
+
+@function fraction($num) {
+  @return calc(calc(100% / #{$num}) - 20px);
+}
+
+.container {
+  @include flex-common($wrap: wrap);
+
+  margin-top: 50px;
+}
+
+.subNavs {
+  @include flex-common($direction: column, $align: center);
+
+  width: fraction(2);
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.subNav {
+  margin-bottom: 5px;
+  flex: 1;
+
+  &:first-child {
+    font-weight: bold;
+  }
+}
+
+@include desktop {
+  .container {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  .subNavs {
+    width: fraction(4);
+  }
+}

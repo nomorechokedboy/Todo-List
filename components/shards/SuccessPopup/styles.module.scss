@@ -1,0 +1,57 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+@mixin set-size($width: $height, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin tickmark-style($x) {
+  content: "";
+  background-color: $medium-spring-green;
+  transform: translateX($x) rotate(-45deg);
+  transform-origin: left bottom;
+}
+
+.layout {
+  @include flex-center;
+  @include overlay;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+
+.popup {
+  @include flex-common(space-between, center, column);
+  @include set-size(500px, 200px);
+
+  background-color: $white;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.tickMark {
+  @include set-size(100px);
+
+  position: relative;
+  border: 4px solid $medium-spring-green;
+  border-radius: 50%;
+}
+
+.tickMark {
+  &::before {
+    @include position(absolute, 45%, auto, auto, 30%);
+    @include set-size(4px, 30%);
+    @include tickmark-style(15px);
+  }
+
+  &::after {
+    @include position(absolute, auto, auto, 25%, 35%);
+    @include set-size(50%, 4px);
+    @include tickmark-style(10px);
+  }
+}
+
+.text {
+  font-size: 30px;
+}

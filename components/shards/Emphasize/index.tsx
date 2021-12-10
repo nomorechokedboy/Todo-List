@@ -1,17 +1,23 @@
-import Image from "next/image";
 import React from "react";
 import Slogan from "../Slogan";
 import StartedButton from "../StartedButton";
-import styles from "./emphasize.module.css";
+import tea_img from "../../../public/tea.jpeg";
+import Image from "next/image";
+import styles from "./emphasize.module.scss";
 
 const Emphasize = () => {
   return (
     <section className={styles.container}>
       <div className={styles.emphasizeImage}>
-        <img src="/tea.jpeg" alt="Meditation picture" placeholder="blur" />
+        <Image
+          src={tea_img}
+          alt="Meditation picture"
+          layout="responsive"
+          placeholder="blur"
+        />
       </div>
       <div className={styles.leftWrapper}>
-        <Slogan />
+        <Slogan text="Peaceful design" />
         <StartedButton />
       </div>
     </section>

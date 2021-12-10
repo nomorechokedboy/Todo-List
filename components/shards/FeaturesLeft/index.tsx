@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./featuresLeft.module.css";
+import styles from "./featuresLeft.module.scss";
 
 import Slogan from "../Slogan";
 
@@ -19,7 +19,7 @@ const FeaturesDescript = ({ content }: IFeaturesLeft) => (
 const FeaturesLeft = () => {
   return (
     <div className={styles.container}>
-      <Slogan />
+      <Slogan text="Features" />
       {content.map((el, i) => (
         <FeaturesDescript content={content} key={i} />
       ))}

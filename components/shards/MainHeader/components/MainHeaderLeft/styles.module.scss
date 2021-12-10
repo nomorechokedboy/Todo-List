@@ -1,0 +1,40 @@
+@import "../../../../../styles/mixins";
+
+.left {
+  @include flex-common($align: center, $justify: space-between);
+
+  flex: 1;
+}
+
+.headerLogo {
+  width: 56px;
+}
+
+.userName {
+  @include text-style(30px, bold);
+
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+@include desktop {
+  .left {
+    justify-content: initial;
+    width: 25%;
+    flex: none;
+  }
+
+  .headerLogo {
+    margin-right: 20px;
+  }
+
+  .username {
+    flex: 1;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}

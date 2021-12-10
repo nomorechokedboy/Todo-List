@@ -1,0 +1,50 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.inputContainer {
+  border-bottom: 2px solid;
+  margin-bottom: 3rem;
+}
+
+.input {
+  width: 300px;
+  font-size: 20px;
+  padding-left: 30px;
+  border: none;
+  outline: none;
+  background: none;
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.icon {
+  margin-left: 0;
+}
+
+.textBox {
+  display: flex;
+  padding: 10px 5px 5px;
+}
+
+.label {
+  @include text-style(20px, bold);
+
+  text-transform: capitalize;
+}
+
+.pwdShow {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1023px) {
+  .input {
+    width: 250px;
+    font-size: 18px;
+  }
+
+  .input::placeholder {
+    color: $matterhorn;
+  }
+}

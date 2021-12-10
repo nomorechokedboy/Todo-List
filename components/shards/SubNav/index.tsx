@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./subNav.module.css";
+import styles from "./subNav.module.scss";
 
 const data = [
   {
@@ -33,7 +33,7 @@ const NavWrapper = () => (
 export default function SubNav() {
   return (
     <section className={styles.container}>
-      {Array.from(new Array(4)).map((el, i) => (
+      {Array.from(new Array(4)).map((_, i) => (
         <NavWrapper key={i} />
       ))}
     </section>

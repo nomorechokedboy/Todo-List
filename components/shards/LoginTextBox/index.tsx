@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import styles from "./loginTextBox.module.css";
+import Icon from "../Icon";
+import styles from "./loginTextBox.module.scss";
 
 interface ILoginTextBoxProps {
   id: string;
@@ -53,7 +54,7 @@ export default function LoginTextBox({
         </label>
 
         <div className={styles.textBox}>
-          <i className={iconClass}></i>
+          <Icon iconName={iconClass} className={styles.icon}></Icon>
           <input
             {...register(name, {
               required: "This field is required",
@@ -65,9 +66,11 @@ export default function LoginTextBox({
           />
 
           {isPwd && (
-            <div className={styles.pwdShow} onClick={handlePwdShowClick}>
-              <i className={pwd.show ? icon.closeEyes : icon.openEyes} />
-            </div>
+            <Icon
+              className={styles.icon}
+              iconName={pwd.show ? icon.closeEyes : icon.openEyes}
+              handleClick={handlePwdShowClick}
+            />
           )}
         </div>
       </div>

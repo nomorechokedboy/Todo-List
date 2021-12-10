@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./loginButton.module.css";
+import styles from "./loginButton.module.scss";
 
 interface ILoginButtonProps {
   name: string;

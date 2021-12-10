@@ -1,0 +1,12 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  background-color: $early-dawn;
+
+  @include desktop {
+    @include flex;
+
+    padding: 50px 10%;
+  }
+}

@@ -1,0 +1,22 @@
+@import "../../../../../styles/mixins";
+@import "../../../../../styles/variables";
+
+.middle {
+  display: none;
+}
+
+@include desktop {
+  .middle {
+    @include flex-common($align: center);
+
+    width: 60%;
+  }
+
+  .searchBar {
+    background-color: $early-dawn;
+    border: none;
+    flex: 1;
+    margin-right: 20px;
+    padding: 10px;
+  }
+}

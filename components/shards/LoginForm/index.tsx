@@ -6,29 +6,10 @@ import { setAuth } from "../../../redux/auth/action";
 import { setLoginUser } from "../../../redux/loginUser/action";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { loginStatus } from "../../../pages/api/getUser";
-import styles from "./loginForm.module.css";
+import { loginStatus } from "../../../lib/api/user";
+import styles from "./loginForm.module.scss";
+import { setStorageWithExpiry } from "../../../lib/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-/**
- * setStorageWithExpiry works like localStorage.setItem() but with expiry time
- * @param key The key in storage
- * @param value The item need to store
- * @param ttl The time expire in millisecond
- */
-const setStorageWithExpiry = (key: string, value: string, ttl: number) => {
-  const now = new Date();
-  const item = {
-    value: value,
-    expiry: now.getTime() + ttl,
-  };
-
-  localStorage.setItem(key, JSON.stringify(item));
-};
-
-// interface UserInputElement extends HTMLInputElement {
-//   password: HTMLInputElement;
-// }
 
 interface FormInput {
   email: string;
@@ -37,8 +18,9 @@ interface FormInput {
 }
 
 export default function LoginForm() {
-  const router = useRouter();
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const { register, handleSubmit } = useForm<FormInput>();
 
   if (router.asPath === "/signup") {
@@ -73,15 +55,14 @@ export default function LoginForm() {
     const [token, error] = await loginStatus(data);
 
     if (token) {
-      // remember me
+      // FIXME: remember me
       if (data[textbox.checked]) {
-        dispatch(setAuth(token));
-
-        const ttl = 604_800_000; // 7 days
-        setStorageWithExpiry("token", token, ttl);
+        dispatch(setLoginUser(token));
       }
 
-      dispatch(setLoginUser(token));
+      const ttl = 604_800_000; // 7 days
+      setStorageWithExpiry("token", token, ttl);
+      dispatch(setAuth(token));
       setSuccess(true);
 
       setTimeout(() => {

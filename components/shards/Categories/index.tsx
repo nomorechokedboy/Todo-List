@@ -1,6 +1,6 @@
 import React from "react";
 import IconicButton from "../IconicButton";
-import styles from "./categories.module.css";
+import styles from "./categories.module.scss";
 
 export default function Categories() {
   return (

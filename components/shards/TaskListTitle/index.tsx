@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../Icon";
 import IconWrapper from "../IconWrapper";
-import styles from "./taskListTitle.module.css";
+import styles from "./taskListTitle.module.scss";
 
 export default function TaskListTitle() {
   return (

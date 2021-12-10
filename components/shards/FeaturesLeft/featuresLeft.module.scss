@@ -1,0 +1,27 @@
+@import "../../../styles/mixins";
+
+.container {
+  @include flex-col;
+
+  flex: 1;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+.descript {
+  margin-top: 10px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+@include desktop {
+  .container {
+    width: 50%;
+  }
+
+  .descript {
+    margin-top: 20px;
+  }
+}

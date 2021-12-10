@@ -1,0 +1,33 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  background-image: url("/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 30px;
+}
+
+.demoImage {
+  width: 100%;
+}
+
+.textWrapper {
+  @include text-style(20px, bold);
+
+  margin-top: 20px;
+}
+
+.descript {
+  margin-top: 10px;
+}
+
+@include desktop {
+  .container {
+    padding: 50px 20%;
+  }
+
+  .textWrapper {
+    margin-top: 50px;
+  }
+}
