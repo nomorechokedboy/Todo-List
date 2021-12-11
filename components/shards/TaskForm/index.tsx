@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AddTask } from "../../../lib/api/task";
-import { selectAuth } from "../../../redux/auth/action";
+import { selectLoginUser } from "../../../redux/loginUser/action";
 import { selectShowForm, setShowForm } from "../../../redux/showForm/action";
 import { addTodos } from "../../../redux/todos/action";
 import FormButton from "../FormButton";
@@ -20,7 +20,7 @@ export interface TaskData {
 export default function TaskForm() {
   const dispatch = useDispatch();
   const showForm = useSelector(selectShowForm);
-  const loginUser = useSelector(selectAuth);
+  const loginUser = useSelector(selectLoginUser);
 
   const {
     reset,
@@ -31,7 +31,9 @@ export default function TaskForm() {
   } = useForm();
 
   const onSubmit = handleSubmit(async (data: TaskData) => {
-    const task = await AddTask(loginUser, data).catch((e) => console.error(e));
+    const task = await AddTask(loginUser.token, data).catch((e) =>
+      console.error(e)
+    );
 
     if (task) {
       dispatch(addTodos(task));

@@ -5,7 +5,7 @@ interface TodoSearchAction {
   payload: string;
 }
 
-export function todoSearch(state = "", action: TodoSearchAction) {
+export default function todoSearch(state = "", action: TodoSearchAction) {
   switch (action.type) {
     case SET_TODO_SEARCH:
       return action.payload;

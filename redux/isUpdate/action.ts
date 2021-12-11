@@ -5,4 +5,4 @@ export const setIsUpdate = (isUpdate: boolean) => ({
   payload: isUpdate,
 });
 
-export const selectIsUpdate = (state) => state.isUpdate;
+export const selectIsUpdate = (state: any) => state.isUpdate;

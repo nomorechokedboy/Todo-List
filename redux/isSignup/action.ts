@@ -5,4 +5,4 @@ export const setIsSignup = (isSignUp: boolean) => ({
   payload: isSignUp,
 });
 
-export const selectIsSignUp = (state: any) => state.isSignup;
+export const selectIsSignup = (state: any) => state.isSignup;

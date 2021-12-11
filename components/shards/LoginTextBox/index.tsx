@@ -46,6 +46,10 @@ export default function LoginTextBox({
     };
   }, []);
 
+  const passwordType = useMemo(() => {
+    return pwd.show ? icon.closeEyes : icon.openEyes;
+  }, [pwd.show]);
+
   return (
     <>
       <div className={styles.inputContainer}>
@@ -68,7 +72,7 @@ export default function LoginTextBox({
           {isPwd && (
             <Icon
               className={styles.icon}
-              iconName={pwd.show ? icon.closeEyes : icon.openEyes}
+              iconName={passwordType}
               handleClick={handlePwdShowClick}
             />
           )}

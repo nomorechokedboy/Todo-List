@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import IconWrapper from "../../../IconWrapper";
 import Icon from "../../../Icon";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowForm } from "../../../../../redux/showForm/action";
-import { setAuth, selectAuth } from "../../../../../redux/auth/action";
+import {
+  setLoginUser,
+  selectLoginUser,
+} from "../../../../../redux/loginUser/action";
 
 export default function MainHeaderRight() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const token = useSelector(selectAuth);
+  const payload = useSelector(selectLoginUser);
 
   const showForm = React.useCallback(() => {
     dispatch(setShowForm(true));
   }, [dispatch]);
 
-  const handleSignoutClick = () => {
+  const handleSignoutClick = React.useCallback(() => {
     // remove user from localStorage
-    localStorage.clear();
+    payload.setLocal && localStorage.clear();
 
-    dispatch(setAuth(null));
+    dispatch(setLoginUser({ token: null, setLocal: false }));
 
     // return to homepage
     router.replace("/");
-  };
+  }, [dispatch]);
 
   return (
     <section className={styles.right}>
@@ -32,7 +35,7 @@ export default function MainHeaderRight() {
         <Icon iconName="plus" handleClick={showForm} />
         <Icon iconName="bell" handleClick={() => console.log("I am bell")} />
         <Icon iconName="cog" handleClick={() => console.log("I am cog")} />
-        {token && (
+        {payload.token && (
           <Icon iconName="sign-out-alt" handleClick={handleSignoutClick} />
         )}
       </IconWrapper>

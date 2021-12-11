@@ -5,7 +5,10 @@ interface IsSignupAction {
   payload: boolean;
 }
 
-export function isSignupReducer(isSignup = false, action: IsSignupAction) {
+export default function isSignupReducer(
+  isSignup = false,
+  action: IsSignupAction
+) {
   switch (action.type) {
     case SET_IS_SIGNUP:
       return action.payload;

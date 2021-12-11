@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteTask, UpdateTask } from "../../../lib/api/task";
-import { selectAuth } from "../../../redux/auth/action";
+import { selectLoginUser } from "../../../redux/loginUser/action";
 import { deleteTodos, updateTodos } from "../../../redux/todos/action";
 import FormButton from "../FormButton";
 import Icon from "../Icon";
@@ -24,7 +24,7 @@ export default function Task({ task }: TaskProps) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isUpdate, setIsUpdate] = React.useState(false);
-  const loginUser = useSelector(selectAuth);
+  const loginUser = useSelector(selectLoginUser);
   const { reset, register, handleSubmit, formState } = useForm();
 
   const onSubmit = handleSubmit(async (data: UpdateTask) => {
@@ -36,8 +36,10 @@ export default function Task({ task }: TaskProps) {
       createAt: task.createAt,
     };
 
-    const message = await UpdateTask(loginUser, updateTask);
-    if (message) dispatch(updateTodos(updateTask));
+    const message = await UpdateTask(loginUser.token, updateTask);
+    if (message) {
+      dispatch(updateTodos(updateTask));
+    }
 
     setIsUpdate(false);
     setIsOpen(false);
@@ -77,7 +79,7 @@ export default function Task({ task }: TaskProps) {
   );
 
   const deleteTask = async () => {
-    const taskDeleted = await DeleteTask(loginUser, task._id);
+    const taskDeleted = await DeleteTask(loginUser.token, task._id);
 
     if (taskDeleted) {
       dispatch(deleteTodos(taskDeleted));

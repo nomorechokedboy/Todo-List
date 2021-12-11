@@ -1,14 +1,12 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
 import SuccessPopup from "../SuccessPopup";
-import { useMemo, useState } from "react";
-import { setAuth } from "../../../redux/auth/action";
+import { useEffect, useMemo, useState } from "react";
 import { setLoginUser } from "../../../redux/loginUser/action";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { loginStatus } from "../../../lib/api/user";
 import styles from "./loginForm.module.scss";
-import { setStorageWithExpiry } from "../../../lib/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormInput {
@@ -23,9 +21,9 @@ export default function LoginForm() {
 
   const { register, handleSubmit } = useForm<FormInput>();
 
-  if (router.asPath === "/signup") {
-    router.replace("/login");
-  }
+  useEffect(() => {
+    router.replace("/login", undefined, { shallow: true });
+  }, []);
 
   const [success, setSuccess] = useState(false);
   const [notification, setNotification] = useState("");
@@ -55,18 +53,17 @@ export default function LoginForm() {
     const [token, error] = await loginStatus(data);
 
     if (token) {
-      // FIXME: remember me
-      if (data[textbox.checked]) {
-        dispatch(setLoginUser(token));
-      }
+      dispatch(
+        setLoginUser({
+          token,
+          setLocal: data[textbox.checked],
+        })
+      );
 
-      const ttl = 604_800_000; // 7 days
-      setStorageWithExpiry("token", token, ttl);
-      dispatch(setAuth(token));
       setSuccess(true);
 
       setTimeout(() => {
-        router.push("/todomain");
+        router.push("/todomain", undefined, { shallow: true });
       }, 1000);
     } else {
       setNotification(error);

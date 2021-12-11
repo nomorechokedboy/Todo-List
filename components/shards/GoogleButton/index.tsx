@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { googleLoginStatus } from "../../../lib/api/user";
 import { useGoogleLogin } from "react-google-login";
-import { setAuth } from "../../../redux/auth/action";
+import { setLoginUser } from "../../../redux/loginUser/action";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export default function GoogleButton() {
       const ttl = 604_800_000; // 7 days
       setStorageWithExpiry("token", token, ttl);
 
-      dispatch(setAuth(id_token));
+      dispatch(setLoginUser({ token, setLocal: true }));
       setIsLoginSuccess(true);
 
       setTimeout(() => {

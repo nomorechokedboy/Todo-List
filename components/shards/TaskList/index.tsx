@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllTask } from "../../../lib/api/task";
-import { selectAuth } from "../../../redux/auth/action";
+import { selectLoginUser } from "../../../redux/loginUser/action";
 import { setShowForm } from "../../../redux/showForm/action";
 import { selectTodos, setTodos } from "../../../redux/todos/action";
 import IconicButton from "../IconicButton";
@@ -13,7 +13,7 @@ import styles from "./taskList.module.scss";
 export default function TaskList() {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
-  const loginUser = useSelector(selectAuth);
+  const loginUser = useSelector(selectLoginUser);
   console;
 
   const showForm = React.useCallback(() => {
@@ -28,7 +28,7 @@ export default function TaskList() {
   );
 
   React.useEffect(() => {
-    GetAllTask(loginUser).then(({ data }) => {
+    GetAllTask(loginUser.token).then(({ data }) => {
       const tasks = data.map((task: TaskData) => ({
         _id: task._id,
         title: task.title,
@@ -39,7 +39,7 @@ export default function TaskList() {
 
       dispatch(setTodos(tasks));
     });
-  }, [loginUser, dispatch, showForm]);
+  }, [loginUser.token, dispatch, showForm]);
 
   return (
     <div className={styles.container}>
