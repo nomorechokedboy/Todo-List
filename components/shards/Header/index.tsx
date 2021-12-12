@@ -10,11 +10,14 @@ export default function Header() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSignupClick = React.useCallback(() => {
-    dispatch(setIsSignup(true));
-
-    router.push("/login", "/signup");
-  }, [dispatch]);
+  const handleSignupClick = React.useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      dispatch(setIsSignup(true));
+      router.push("/login", "/signup");
+    },
+    [dispatch, router]
+  );
 
   return (
     <header className={styles.header}>
@@ -49,7 +52,7 @@ export default function Header() {
           </Link>
         </div>
         <div className={styles.navItem}>
-          <Link href="/login">
+          <Link href="/login" replace>
             <a>Sign In</a>
           </Link>
         </div>

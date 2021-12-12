@@ -20,7 +20,7 @@ const FeaturesLeft = () => {
   return (
     <div className={styles.container}>
       <Slogan text="Features" />
-      {content.map((el, i) => (
+      {content.map((_el, i) => (
         <FeaturesDescript content={content} key={i} />
       ))}
     </div>

@@ -1,6 +1,6 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
-import SuccessPopup from "../SuccessPopup";
+import LoginPopup from "../LoginPopup";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -20,11 +20,13 @@ export default function SignupForm() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<FormInput>();
+  const [isWaiting, setIsWaiting] = useState(false);
   const [notification, setNotification] = useState("");
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     router.replace("/login", "/signup", { shallow: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const textbox = useMemo(() => {
@@ -67,6 +69,7 @@ export default function SignupForm() {
       }, 1000);
     } else {
       setNotification(error);
+      setIsWaiting(false);
 
       target[textbox.pwd].value = "";
       target[textbox.pwdConfirm].value = "";
@@ -86,7 +89,8 @@ export default function SignupForm() {
 
   return (
     <>
-      {success && <SuccessPopup name="Signup" />}
+      {success && <LoginPopup success={success} text="Signup Successfully!" />}
+      {isWaiting && <LoginPopup success={success} text="Waiting..." />}
       <div className={styles.errorNoti}>{notification}</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <LoginTextBox

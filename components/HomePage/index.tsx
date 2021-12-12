@@ -7,7 +7,6 @@ import Footer from "../shards/Footer";
 import { useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { selectLoginUser } from "../../redux/loginUser/action";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 interface User {
@@ -24,10 +23,7 @@ export default function HomePage() {
   if (payload.token) {
     const authUser: User = jwtDecode(payload.token);
 
-    authUser._id &&
-      useEffect(() => {
-        router.replace("/todomain");
-      }, []);
+    authUser._id && router.replace("/todomain");
   }
 
   return (

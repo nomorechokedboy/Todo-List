@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-@mixin set-size($width: $height, $height: $width) {
+@mixin set-size($width, $height: $width) {
   width: $width;
   height: $height;
 }
@@ -36,9 +36,7 @@
   position: relative;
   border: 4px solid $medium-spring-green;
   border-radius: 50%;
-}
 
-.tickMark {
   &::before {
     @include position(absolute, 45%, auto, auto, 30%);
     @include set-size(4px, 30%);
@@ -52,6 +50,23 @@
   }
 }
 
+.loader {
+  @include set-size(100px);
+
+  border: 4px solid $dodger-blue;
+  border-top: 4px solid $early-dawn;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .text {
   font-size: 30px;
 }

@@ -1,6 +1,6 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
-import SuccessPopup from "../SuccessPopup";
+import LoginPopup from "../LoginPopup";
 import { useEffect, useMemo, useState } from "react";
 import { setLoginUser } from "../../../redux/loginUser/action";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { loginStatus } from "../../../lib/api/user";
 import styles from "./loginForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { setIsSignup } from "../../../redux/isSignup/action";
 
 interface FormInput {
   email: string;
@@ -18,15 +19,16 @@ interface FormInput {
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [success, setSuccess] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
+  const [notification, setNotification] = useState("");
 
   const { register, handleSubmit } = useForm<FormInput>();
 
   useEffect(() => {
     router.replace("/login", undefined, { shallow: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [success, setSuccess] = useState(false);
-  const [notification, setNotification] = useState("");
 
   const textbox = useMemo(() => {
     return {
@@ -48,7 +50,7 @@ export default function LoginForm() {
     data: FormInput,
     event: React.BaseSyntheticEvent
   ) => {
-    setNotification("Waiting..."); // wait for validation
+    setIsWaiting(true); // wait for validation
 
     const [token, error] = await loginStatus(data);
 
@@ -60,13 +62,15 @@ export default function LoginForm() {
         })
       );
 
+      setIsWaiting(false);
       setSuccess(true);
 
       setTimeout(() => {
-        router.push("/todomain", undefined, { shallow: true });
+        router.push("/todomain", undefined);
       }, 1000);
     } else {
       setNotification(error);
+      setIsWaiting(false);
 
       const target = event.target;
       target[textbox.pwd].value = "";
@@ -79,7 +83,8 @@ export default function LoginForm() {
 
   return (
     <>
-      {success && <SuccessPopup name="Login" />}
+      {success && <LoginPopup success={success} text="Login Successfully!" />}
+      {isWaiting && <LoginPopup success={success} text="Waiting..." />}
       <div className={styles.errorNoti}>{notification}</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <LoginTextBox

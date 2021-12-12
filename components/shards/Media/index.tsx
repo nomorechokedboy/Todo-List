@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import logo from "../../../public/logo.png";
 import styles from "./media.module.scss";
 
 const data = [
@@ -30,15 +31,11 @@ const MediaIcon = ({ data }) => (
 export default function Media() {
   return (
     <section className={styles.container}>
-      <img className={styles.logo} src="/logo.png" alt="StikiNote logo" />
-      {/* <div >
-      </div> */}
+      <div className={styles.logo}>
+        <Image src={logo} alt="StikiNote logo" width={56} height={56} />
+      </div>
       <div className={styles.mobileRightWrapper}>
         <p className={styles.descript}>
-          {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
-          distinctio odio nostrum porro sit impedit blanditiis culpa aperiam
-          possimus molestiae, omnis velit modi dolores aliquid praesentium
-          voluptatem maxime in fugit. */}
           Join our community and explore the rabbit hole
         </p>
         <div className={styles.mediaIcons}>

@@ -48,7 +48,7 @@ export default function LoginTextBox({
 
   const passwordType = useMemo(() => {
     return pwd.show ? icon.closeEyes : icon.openEyes;
-  }, [pwd.show]);
+  }, [pwd.show, icon]);
 
   return (
     <>

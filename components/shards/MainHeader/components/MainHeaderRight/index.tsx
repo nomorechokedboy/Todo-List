@@ -27,7 +27,7 @@ export default function MainHeaderRight() {
 
     // return to homepage
     router.replace("/");
-  }, [dispatch]);
+  }, [dispatch, router, payload.setLocal]);
 
   return (
     <section className={styles.right}>

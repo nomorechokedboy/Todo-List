@@ -5,19 +5,21 @@ import { setLoginUser } from "../../../redux/loginUser/action";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
-import SuccessPopup from "../../shards/SuccessPopup";
+import LoginPopup from "../../shards/LoginPopup";
 import { GOOGLE_CLIENT_ID } from "../../../config";
 import styles from "./googleButton.module.scss";
 import { setStorageWithExpiry } from "../../../lib/utils";
 
 export default function GoogleButton() {
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
   const onSuccess = async (res: any) => {
     const id_token = res.getAuthResponse().id_token; // get Gulu Gulu token
 
+    setIsWaiting(true);
     const [token, _] = await googleLoginStatus(id_token);
 
     if (token) {
@@ -25,6 +27,7 @@ export default function GoogleButton() {
       setStorageWithExpiry("token", token, ttl);
 
       dispatch(setLoginUser({ token, setLocal: true }));
+      setIsWaiting(false);
       setIsLoginSuccess(true);
 
       setTimeout(() => {
@@ -46,7 +49,10 @@ export default function GoogleButton() {
 
   return (
     <>
-      {isLoginSuccess && <SuccessPopup name="Login" />}
+      {isLoginSuccess && (
+        <LoginPopup success={isLoginSuccess} text="Login Successfully!" />
+      )}
+      {isWaiting && <LoginPopup success={isLoginSuccess} text="Waiting..." />}
       <div onClick={signIn} className={styles.ggBtn}>
         <div className={styles.icon}>
           <Image
