@@ -10,4 +10,5 @@ function Validate({ message }: ValidateProps) {
 }
 
 const ValidateError = React.memo(Validate);
+
 export default ValidateError;

@@ -1,0 +1,11 @@
+@import "../../../../../styles/mixins";
+
+.right {
+  display: none;
+}
+
+@include desktop {
+  .right {
+    display: block;
+  }
+}

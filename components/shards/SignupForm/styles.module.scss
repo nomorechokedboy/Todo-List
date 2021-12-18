@@ -1,0 +1,17 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.signupButton {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 239, 213, 1),
+    rgb(255, 253, 224),
+    rgba(255, 239, 213, 1)
+  );
+}
+
+.errorNoti {
+  @include text-style(20px, 500);
+
+  color: $froly;
+}

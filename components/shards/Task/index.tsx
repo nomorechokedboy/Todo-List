@@ -25,13 +25,7 @@ export default function Task({ task }: TaskProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isUpdate, setIsUpdate] = React.useState(false);
   const loginUser = useSelector(selectLoginUser);
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState,
-    formState: { errors },
-  } = useForm();
+  const { reset, register, handleSubmit, formState } = useForm();
 
   const onSubmit = handleSubmit(async (data: UpdateTask) => {
     const updateTask: TaskData = {
@@ -42,8 +36,10 @@ export default function Task({ task }: TaskProps) {
       createAt: task.createAt,
     };
 
-    const message = await UpdateTask(loginUser, updateTask);
-    if (message) dispatch(updateTodos(updateTask));
+    const message = await UpdateTask(loginUser.token, updateTask);
+    if (message) {
+      dispatch(updateTodos(updateTask));
+    }
 
     setIsUpdate(false);
     setIsOpen(false);
@@ -83,7 +79,7 @@ export default function Task({ task }: TaskProps) {
   );
 
   const deleteTask = async () => {
-    const taskDeleted = await DeleteTask(loginUser, task._id);
+    const taskDeleted = await DeleteTask(loginUser.token, task._id);
 
     if (taskDeleted) {
       dispatch(deleteTodos(taskDeleted));

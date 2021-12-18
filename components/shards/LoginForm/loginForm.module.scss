@@ -1,0 +1,27 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.loginButton {
+  background-image: linear-gradient(
+    to right,
+    rgba(30, 144, 255, 1),
+    rgba(30, 144, 255, 0.45),
+    rgba(30, 144, 255, 1)
+  );
+}
+
+.errorNoti {
+  color: $froly;
+  @include text-style(20px, 500);
+}
+
+.checkboxContainer {
+  @include flex-center;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.checkbox {
+  margin-right: 20px;
+  transform: scale(1.5);
+}

@@ -5,4 +5,4 @@ export const setTodoSearch = (todoSearch: string) => ({
   payload: todoSearch,
 });
 
-export const selectTodoSearch = (state) => state.todoSearch;
+export const selectTodoSearch = (state: any) => state.todoSearch;

@@ -1,0 +1,37 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  @include flex-common($align: center, $justify: space-between);
+
+  background-color: $early-dawn;
+  padding: 0 30px;
+}
+.right {
+  display: none;
+}
+
+@include desktop {
+  .container {
+    justify-content: initial;
+    padding: 0 20%;
+  }
+
+  .middle {
+    @include flex-common($align: center);
+
+    width: 60%;
+  }
+
+  .searchBar {
+    background-color: $early-dawn;
+    border: none;
+    flex: 1;
+    margin-right: 20px;
+    padding: 10px;
+  }
+
+  .right {
+    display: block;
+  }
+}

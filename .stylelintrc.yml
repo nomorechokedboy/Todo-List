@@ -1,0 +1,3 @@
+extends:
+  - "@nextds/stylelint-config-next"
+  - stylelint-config-standard-scss

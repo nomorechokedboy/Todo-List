@@ -1,12 +1,10 @@
 import React from "react";
-import styles from "./slogan.module.css";
+import styles from "./slogan.module.scss";
 
-export default function Slogan() {
-  return (
-    <span className={styles.pageSlogan}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae veritatis
-      officiis, soluta dolore voluptates maiores aut ducimus amet dolor quam ad,
-      facere distinctio iusto id consequuntur ullam perferendis reiciendis ex.
-    </span>
-  );
+interface SloganProps {
+  text: string;
+}
+
+export default function Slogan({ text }: SloganProps) {
+  return <span className={styles.pageSlogan}>{text}</span>;
 }

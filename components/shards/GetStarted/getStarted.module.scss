@@ -1,0 +1,24 @@
+@import "../../../styles/mixins";
+
+.container {
+  @include flex-col;
+}
+
+.banner {
+  width: 100%;
+}
+
+@include desktop {
+  .container {
+    margin-top: 50px;
+  }
+
+  .banner {
+    align-self: center;
+    width: 800px;
+  }
+
+  .test {
+    align-self: center;
+  }
+}

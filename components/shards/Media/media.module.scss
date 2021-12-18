@@ -1,0 +1,57 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  @include flex-common($direction: row, $align: center);
+
+  padding: 0 30px;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.mobileRightWrapper {
+  @include flex-col;
+
+  margin-left: 50px;
+}
+
+.descript {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 16;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.mediaIcons {
+  @include flex-common($justify: center);
+
+  margin-top: 20px;
+}
+
+.icon {
+  margin-right: 20px;
+}
+
+@include desktop {
+  .container {
+    align-items: flex-start;
+    flex-direction: column;
+    width: 20%;
+    padding: 0;
+  }
+
+  .mobileRightWrapper {
+    margin-left: 0;
+  }
+
+  .descript {
+    width: 200px;
+  }
+
+  .mediaIcons {
+    justify-content: flex-start;
+  }
+}

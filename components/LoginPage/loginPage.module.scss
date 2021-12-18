@@ -1,0 +1,42 @@
+@import "../../styles/mixins";
+
+.container {
+  @include flex-common;
+}
+
+.imageContainer {
+  flex: 1;
+  height: 100vh;
+  position: relative;
+}
+
+.logoWrapper {
+  @include flex-center;
+  padding-top: 40px;
+}
+
+.pageName {
+  @include text-style(55px, bold);
+
+  padding-left: 30px;
+  color: rgb(3, 3, 3);
+}
+
+.main {
+  @include flex-col;
+
+  height: 100vh;
+  flex: 1;
+}
+
+@media only screen and (max-width: 1023px) {
+  .container {
+    background-image: url("/loginImage.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .imageContainer {
+    display: none;
+  }
+}

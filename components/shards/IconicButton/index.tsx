@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./iconicButton.module.css";
+import styles from "./iconicButton.module.scss";
 
 interface IIconicButtonProps {
   buttonName: string;
   buttonStyle: Object;
   iconName: string;
   iconStyle?: Object;
-  handleClick: React.MouseEventHandler;
+  handleClick?: React.MouseEventHandler;
 }
 export default function IconicButton({
   buttonName,

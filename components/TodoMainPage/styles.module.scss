@@ -12,20 +12,25 @@
 .pageContent {
   flex: 1;
 }
+
 .redirectNonUser {
   @include flex-center;
+
   height: 100vh;
 }
+
 .login {
-  color: $dodgerBlue;
+  color: $dodger-blue;
 }
+
 .signup {
-  color: $oldRose;
+  color: $old-rose;
 }
-@media only screen and (min-width: 1024px) {
+
+@include desktop {
   .sidebar {
-    border-bottom: 1px solid;
     display: block;
+    border-bottom: 1px solid;
     width: 20%;
     padding: 30px;
     max-height: 250px;

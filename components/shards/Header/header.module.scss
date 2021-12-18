@@ -1,0 +1,77 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.header {
+  @include flex;
+
+  padding: 30px;
+}
+
+.headerRight {
+  display: none;
+}
+
+.headerLeft {
+  @include flex-common($align: center, $justify: space-between);
+
+  flex: 1;
+}
+
+.headerLogo {
+  width: 56px;
+}
+
+.headerPageName {
+  @include text-style(30px, bold);
+
+  color: $night-rider;
+}
+
+@include desktop {
+  .header {
+    padding: 0 20%;
+  }
+
+  .headerLeft {
+    width: 60%;
+    justify-content: flex-start;
+
+    & > i {
+      display: none;
+    }
+  }
+
+  .headerLogo {
+    margin-right: 20px;
+  }
+
+  .headerRight {
+    @include flex-common($align: center);
+
+    width: 40%;
+    flex-shrink: 0;
+  }
+
+  .navItem {
+    @include text-style(16px, bold);
+
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+
+    & > span {
+      margin-right: 10px;
+    }
+
+    &:last-child,
+    &:nth-child(3) {
+      color: $dodger-blue;
+    }
+
+    &:last-child {
+      background-color: #e0e0e0;
+      border-radius: 3px;
+    }
+  }
+}

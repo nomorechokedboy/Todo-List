@@ -1,0 +1,14 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  @include flex-common($align: center, $direction: column-reverse);
+
+  background-color: $papaya-whip;
+  padding: 0 30px;
+
+  @include desktop {
+    padding: 0 20%;
+    flex-direction: row;
+  }
+}

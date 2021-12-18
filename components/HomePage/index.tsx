@@ -6,7 +6,7 @@ import Emphasize from "../shards/Emphasize";
 import Footer from "../shards/Footer";
 import { useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
-import { selectAuth } from "../../redux/auth/action";
+import { selectLoginUser } from "../../redux/loginUser/action";
 import { useRouter } from "next/router";
 
 interface User {
@@ -17,15 +17,13 @@ interface User {
 
 export default function HomePage() {
   const router = useRouter();
-  const token = useSelector(selectAuth);
+  const payload = useSelector(selectLoginUser);
 
   // check if token is not null
-  if (token) {
-    const authUser: User = jwtDecode(token);
+  if (payload.token) {
+    const authUser: User = jwtDecode(payload.token);
 
-    if (authUser._id) {
-      router.push("/todomain");
-    }
+    authUser._id && router.replace("/todomain");
   }
 
   return (

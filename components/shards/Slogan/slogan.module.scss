@@ -1,0 +1,16 @@
+@import "../../../styles/mixins";
+
+.pageSlogan {
+  @include text-style(30px, bold);
+  @include flex-col;
+
+  padding: 0 50px;
+  text-align: center;
+}
+
+@include desktop {
+  .pageSlogan {
+    padding: 0 20%;
+    font-size: 40px;
+  }
+}

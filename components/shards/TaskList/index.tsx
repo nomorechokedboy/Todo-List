@@ -8,12 +8,13 @@ import IconicButton from "../IconicButton";
 import Task from "../Task";
 import { TaskData } from "../TaskForm";
 import TaskListTitle from "../TaskListTitle";
-import styles from "./taskList.module.css";
+import styles from "./taskList.module.scss";
 
 export default function TaskList() {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
   const loginUser = useSelector(selectLoginUser);
+  console;
 
   const showForm = React.useCallback(() => {
     dispatch(setShowForm(true));
@@ -27,20 +28,18 @@ export default function TaskList() {
   );
 
   React.useEffect(() => {
-    GetAllTask(loginUser)
-      .then(({ data }) => {
-        const tasks = data.map((task: TaskData) => ({
-          _id: task._id,
-          title: task.title,
-          content: task.content,
-          dateFinished: new Date(task.dateFinished).toLocaleDateString(),
-          createAt: new Date(task.createAt).toLocaleDateString(),
-        }));
+    GetAllTask(loginUser.token).then(({ data }) => {
+      const tasks = data.map((task: TaskData) => ({
+        _id: task._id,
+        title: task.title,
+        content: task.content,
+        dateFinished: new Date(task.dateFinished).toLocaleDateString(),
+        createAt: new Date(task.createAt).toLocaleDateString(),
+      }));
 
-        dispatch(setTodos(tasks));
-      })
-      .catch((e) => console.error(e));
-  }, [loginUser, dispatch, showForm]);
+      dispatch(setTodos(tasks));
+    });
+  }, [loginUser.token, dispatch, showForm]);
 
   return (
     <div className={styles.container}>

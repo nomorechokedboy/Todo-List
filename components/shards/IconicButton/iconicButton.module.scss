@@ -1,0 +1,13 @@
+@import "../../../styles/mixins";
+
+.container {
+  @include flex-common($align: center);
+
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.descript {
+  font-size: 25px;
+  margin-left: 20px;
+  user-select: none;
+}

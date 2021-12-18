@@ -4,7 +4,7 @@ import {
   selectTodoSearch,
   setTodoSearch,
 } from "../../../../../redux/TodoSearch/action";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function MainHeaderMiddle() {
   const todoSearch = useSelector(selectTodoSearch);

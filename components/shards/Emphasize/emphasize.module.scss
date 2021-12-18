@@ -1,0 +1,30 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.container {
+  background-color: $early-dawn;
+  /* padding: 0 30px 30px; */
+  padding-bottom: 30px;
+}
+
+.emphasizeImage {
+  width: 100%;
+}
+
+@include desktop {
+  .container {
+    @include flex-common($direction: row-reverse);
+
+    padding: 0 20%;
+  }
+
+  .leftWrapper {
+    flex: 1;
+    width: 50%;
+    padding-top: 50px;
+  }
+
+  .emphasizeImage {
+    width: 400px;
+  }
+}

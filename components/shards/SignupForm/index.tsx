@@ -1,13 +1,13 @@
 import LoginTextBox from "../LoginTextBox";
 import LoginButton from "../LoginButton";
-import SuccessPopup from "../SuccessPopup";
-import { useMemo, useState } from "react";
+import LoginPopup from "../LoginPopup";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { setIsSignup } from "../../../redux/signupState/action";
-import { signupStatus } from "../../../pages/api/getUser";
+import { setIsSignup } from "../../../redux/isSignup/action";
+import { signupStatus } from "../../../lib/api/user";
 import { SubmitHandler, useForm } from "react-hook-form";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 interface FormInput {
   fullname: string;
@@ -20,13 +20,14 @@ export default function SignupForm() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<FormInput>();
-
-  if (router.asPath === "/login") {
-    router.replace("/login", "/signup");
-  }
-
+  const [isWaiting, setIsWaiting] = useState(false);
   const [notification, setNotification] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    router.replace("/login", "/signup", { shallow: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const textbox = useMemo(() => {
     return {
@@ -63,10 +64,12 @@ export default function SignupForm() {
 
       setTimeout(() => {
         dispatch(setIsSignup(false));
-        router.replace("/login");
+
+        router.replace("/login", undefined, { shallow: true });
       }, 1000);
     } else {
       setNotification(error);
+      setIsWaiting(false);
 
       target[textbox.pwd].value = "";
       target[textbox.pwdConfirm].value = "";
@@ -86,7 +89,8 @@ export default function SignupForm() {
 
   return (
     <>
-      {success && <SuccessPopup name="Signup" />}
+      {success && <LoginPopup success={success} text="Signup Successfully!" />}
+      {isWaiting && <LoginPopup success={success} text="Waiting..." />}
       <div className={styles.errorNoti}>{notification}</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <LoginTextBox

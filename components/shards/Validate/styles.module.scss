@@ -2,8 +2,9 @@
 @import "../../../styles/variables";
 
 .error {
-  color: $oldRose;
+  color: $old-rose;
   font-weight: bold;
+
   &::before {
     content: "⚠ ";
     display: inline;

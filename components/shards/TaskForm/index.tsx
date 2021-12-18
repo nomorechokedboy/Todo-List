@@ -31,7 +31,9 @@ export default function TaskForm() {
   } = useForm();
 
   const onSubmit = handleSubmit(async (data: TaskData) => {
-    const task = await AddTask(loginUser, data).catch((e) => console.error(e));
+    const task = await AddTask(loginUser.token, data).catch((e) =>
+      console.error(e)
+    );
 
     if (task) {
       dispatch(addTodos(task));

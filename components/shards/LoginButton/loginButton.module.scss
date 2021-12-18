@@ -1,0 +1,28 @@
+@import "../../../styles/mixins";
+
+@function shadow($y) {
+  @return 0 $y 3.7px 0 rgba(0, 0, 0, 0.25);
+}
+
+.loginBtnWrapper {
+  text-align: center;
+}
+
+.loginBtn {
+  /** size and font */
+  @include text-style(18px, bold);
+
+  width: 250px;
+  height: 55px;
+
+  /** design */
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: shadow(4);
+}
+
+.loginBtn:active {
+  box-shadow: shadow(2);
+  transform: translateY(2px);
+}
